@@ -1,0 +1,34 @@
+
+{% extends "base.html.twig" %}
+{% block title %}{{parent()}} -Page des Figurines{% endblock %}
+
+{% block body %}
+<main>
+
+        
+    <section class="products-and-filters">
+
+        <article class="menu_filter">
+            <h3>Nos Figurines</h3>
+            {% for manga in Mangas %}
+            <ul>
+            <li><a href="#">{{manga.name}}</a></li>
+            </ul>
+            {% endfor %}
+        </article>
+
+        <article class= "product-container">
+            {% for figurine in Figurines %}
+            <article class="product-item">
+                <img class= "imgproduct" src="{{ asset('img/Figurine/' ~ figurine.picture) }}" alt="{{ figurine.description }}">
+                <h3 class ="product-item">{{ figurine.title }}</h3>
+                <span class="product-price" style="display: none;">{{ figurine.price }}</span>
+                <a class="product-item" href="{{url('product.show', {'slug': figurine.title})}}">Voir ce produit</a>
+            </article>
+            {% endfor %}
+        </article>
+    </section>
+
+</main>
+
+{% endblock %}

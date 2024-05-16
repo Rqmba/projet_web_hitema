@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+{% block title %}{{parent()}} -Page des Figurines{% endblock %}
+
+{% block body %}
+
+<main>
+<section>
+    <article class="d-flex">
+        <img class="p-2 w-100" src="{{ asset('img/Autres/2022-medaille-or-meilleure-livraison-by-colisconsult.png') }}" alt="">
+        <figcaption class="d-flex align-items-center">Shonen Store a été distingué Meilleure livraison e-commerce 2022. En effet, shonen store, est arrivé 1er de sa catégorie « Animation ».</figcaption>   
+    </article>
+
+    <article>
+        <h3>DEMAIN CHEZ VOUS AVEC LA LIVRAISON EXPRESS VIA CHRONOPOST</h3>
+            <li>
+                <strong>Commandez avant 15h du lundi au jeudi :</strong>
+                Pour une livraison le lendemain avant 18h, en point relais ou à domicile.
+            </li>
+            <li>
+                <strong>Commandez entre jeudi 15h et vendredi 15h :</strong>
+                Recevez votre commande chez vous ou en point relais samedi avec l'option <span class="fw-bold">"Livrez-moi le samedi"</span> (supplément 5,50 €).
+            </li>
+            <li>
+                <strong>Commandes passées du vendredi 15h au lundi 15h :</strong>
+                Expédiées le lundi, pour une livraison le mardi.
+            </li>
+
+    <p class="mt-3"><span class="fw-bold">Livraison Express en Point relais ou à domicile ?</span> Nous vous conseillons d'opter pour la livraison en point relais. Il se peut toujours qu'un livreur en retard dans sa tournée ne prenne pas le temps de sonner à votre domicile et reprogramme la livraison au lendemain.</p>
+
+    </article>
+
+    <article class="container-custom">
+          <article class="row">
+            <article class="col">
+                <h4 class="border border-dark p-3 bg-dark text-white">NOS MÉTHODES DE LIVRAISON</h4>
+                <p>Livraison standard en Points relais Pickup via Chronopost</p>
+                <p>Livraison standard à domicile contre signature via Colissimo</p>
+                <p>Livraison Express en Points relais via Chronopost</p>
+                <p>Livraison Express à domicile contre signature via Chronopost</p>
+            </article>
+            <article class="col">
+            <h4 class="border border-dark p-3 bg-dark text-white">DURÉE**</h4>
+                <p>4/5 jours</p>
+                <p>48/72H</p>
+                <p>24H</p>
+                <p>24H</p>
+            </article>
+            <article class="col">
+            <h4 class="border border-dark p-3 bg-dark text-white">COÛT *</h4>
+                <p>Gratuit à partir de 100 € d’achat 5 € en dessous de 100 € d’achat</p>
+                <p>Gratuit à partir de 160 € d’achat 7 € en dessous de 160 € d’achat</p>
+                <p>Gratuit à partir de 150 € d’achat 7 € en dessous de 150 € d’achat</p>
+                <p>10 €</p>
+         </article>
+    </article>
+</article>
+
+    <article>
+    <p>* Attention - sur les paires uniques, des frais de ports viendront s'appliquer en complément.</p>
+    <p>** Les délais de livraison démarrent à compter de l'expédition du colis. Seules les commandes passées avant 15H sont expédiées le jour même, du lundi au vendredi. Les commandes passées du vendredi 15h au lundi 15h sont expédiées le lundi.</p>
+    </article>
+    
+</section>
+</main>
+
+{% endblock %}

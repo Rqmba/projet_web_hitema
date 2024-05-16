@@ -1,0 +1,70 @@
+{% extends "base.html.twig" %}
+{% block title %}{{parent()}} -Insription{% endblock %}
+
+{% form_theme form 'tailwind_2_layout.html.twig' %}
+
+{% block body %}
+<main class="flex justify-center items-center h-full">
+<h2>Formulaire d'inscription</h2>
+
+{{form_start(form, { attr: { novalidate: 'novalidate' } })}}
+
+        <article>
+            {{form_label(form.lastname, 'Nom : ')}}
+            {{form_widget(form.lastname) }}
+            {{form_errors(form.lastname) }}
+        </article>
+
+        <article>
+            {{form_label(form.firstname, 'Prénom : ')}}
+            {{form_widget(form.firstname) }}
+            {{form_errors(form.firstname) }}
+        </article>
+
+        <article>
+            {{form_label(form.birthday, 'Date de naissance : ')}}
+            {{form_widget(form.birthday) }}
+            {{form_errors(form.birthday) }}
+        </article>
+
+        <article>
+            {{form_label(form.email, 'Email : ')}}
+            {{form_widget(form.email) }}
+            {{form_errors(form.email) }}
+        </article>
+
+        <article>
+            {{form_label(form.password, 'Mot de passe : ')}}
+            {{form_widget(form.password) }}
+            {{form_errors(form.password) }}
+        </article>
+
+        <article>
+            {{form_label(form.adresse, 'Adresse : ')}}
+            {{form_widget(form.adresse) }}
+            {{form_errors(form.adresse) }}
+        </article>
+
+        <article>
+            {{form_label(form.zipCode, 'Code postal : ')}}
+            {{form_widget(form.zipCode) }}
+            {{form_errors(form.zipCode) }}
+        </article>
+
+        <article>
+            {{form_label(form.city, 'Ville : ')}}
+            {{form_widget(form.city) }}
+            {{form_errors(form.city) }}
+        </article>
+
+        <article>
+            {{form_label(form.country, 'Pays : ')}}
+            {{form_widget(form.country) }}
+            {{form_errors(form.country) }}
+        </article>
+        <p>
+            <button type="submit">S'inscrire</button>
+        </p>
+    {{form_end(form)}}
+</main>
+{% endblock %}

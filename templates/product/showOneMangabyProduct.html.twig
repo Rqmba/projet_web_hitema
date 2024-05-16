@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block title %}{{parent()}} -Page d'acceuil{% endblock %}
+
+{% block body %}
+<article class= "product-container">
+{% for article in mangas %}
+<article class="product-item">
+    <h3 class="product-item">{{ article.title }}</h3>
+    <img class="imgproduct" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
+    <p class="product-item">{{article.description}}</p>
+    <p class="product-item">{{article.price | format_currency('EUR', locale='fr')}}</p>
+    <a class="product-item" href="{{url('product.show', {'slug': article.title})}}">Ajouter au panier</a>
+</article>
+
+{% endfor %}
+</article>
+{% endblock %}

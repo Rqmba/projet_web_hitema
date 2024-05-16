@@ -1,0 +1,238 @@
+/* Les bases fixes */
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62,5%;
+}
+
+body{
+    font-size: 16px;
+    background-color: lightgray;
+    line-height: 1.5;
+    height: 100vh;
+    width: 100vw;
+
+}
+
+img, video{
+    width: 100%;
+}
+
+
+/* Header */
+.header1{
+    background-color: palegreen;
+}
+
+/* Naviguateur */
+
+h1 {
+    padding: 0.5rem;
+    font-size: 3rem;
+    color: #ad4;
+    text-align: center;
+}
+
+h2 {
+    padding: 0.5rem;
+    font-size: 1.7rem;
+    color:black;
+    font-weight: bold;
+}
+
+h3{
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    color:black;
+}
+
+.border-bottom {
+    border-bottom: 4rem solid black; /* Ajoute une bordure inférieure */
+    padding-bottom: 10px; /* Ajoute un espacement sous la bordure */
+}
+
+/* Banniere */
+.Banniere {
+    background-image: url(../img/EXrI7OUU8AAw9J0.jpg);
+    height: 10rem;
+     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    }
+/* Header, FAQ, burger */
+.menu1{
+    height: 3rem;
+}
+
+.imgicons {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Faq */
+.faq{
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+
+.burger{
+    text-align: end;
+}
+
+
+.menu{
+    /* height: 10rem; */
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
+.menu_user {
+    text-align: end;
+    padding-right: 1rem;
+}
+
+.menu_user article {
+    padding-bottom: 1rem;
+}
+
+/* Main */
+
+main{
+    /* width: 100vw; */
+    margin-inline: auto;
+    background-color: rgba(239, 224, 206, 0.815);
+    padding: 1rem;
+}
+
+
+
+/* Slider */
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .slide {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+  }
+
+.slide figure{
+    /* display: flex;
+    gap: 3rem;
+    align-items: center; */
+    width: 50%;
+}
+  .slide figcaption{
+    width: 50%;
+    padding: 0 1rem; /* Ajouter un peu d'espace autour du texte */
+  }
+  
+.carousel button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: black;
+    cursor: pointer;
+    width: 2rem;
+    line-height: 15rem;
+}
+  
+  .prev {
+    left: 0;
+  }
+  
+  .next {
+    right: 0;
+  }
+
+  /* Grid de les conditions de ventes et de retour */
+
+  .container-custom {
+    margin-top: 2rem; 
+    margin-bottom: 2rem;
+    padding: 1rem;
+    padding-inline: 2rem;
+    text-align: center;
+}
+
+.container-custom p,
+.container-custom h2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: grey;
+    color: white;
+    border: black 1rem;
+    padding: 2rem;
+}
+
+.textformate{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    text-align: justify;
+}
+
+.textformate p {
+    margin-bottom: 1rem; /* Ajouter une marge en bas pour chaque paragraphe */
+}
+
+.textformate h3{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+  
+/* Footer */
+
+footer{
+    background-color: palegreen;
+}
+
+footer h3{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    padding-bottom: 0.5rem;
+}
+
+.footermenu{
+    height: 20%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.footermenu article {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    text-align: center;
+}
+
+/* Mise en page adaptative */
+
+

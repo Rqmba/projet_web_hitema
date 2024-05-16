@@ -1,0 +1,119 @@
+
+/* Img */
+
+.imgproduct{
+    width: 10rem;
+}
+
+/* Container de tout les produits de la page produits */
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    width: 50%;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    border: 1px solid #ccc; /* Ajoute une bordure grise autour de chaque produit */
+    border-radius: 0.5rem; /* Arrondit les coins du cadre */
+    padding: 1rem; /* Ajoute un peu d'espace à l'intérieur du cadre */
+    background-color: #fdfdfd;
+}
+
+.product-item img {
+    max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas de son conteneur */
+}
+
+.product-item h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-item a {
+    margin-top: 1.5rem;
+    background-color: rgba(243, 235, 235, 0.422);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: black;
+    opacity: 75%;
+}
+
+.products-and-filters {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-container {
+    flex: 1;
+}
+
+.menu_filter{
+  width: 20%;
+}
+
+/* input[type="submit"]{
+    background-color: rgb(168, 140, 103);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    opacity: 75%;
+} */
+
+
+/*Box menu des produits pour les filtrés  */
+
+/* .menu_filter {
+} */
+
+
+/* Container one product */
+
+.container_oneproduct{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.product_container_oneproduct{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 50%;
+}
+
+.img_product_one{
+    width: 100%;
+}
+
+.img_oneproduct{
+    width: 50%;
+}
+
+.product_container_item{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 1rem;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 0.5rem; */
+    padding: 1rem;
+    flex: 1;
+    width: 100%;
+}
+
+.product_container_item a{
+    background-color: rgb(168, 140, 103);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    opacity: 75%;
+}
