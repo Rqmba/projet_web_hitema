@@ -17,7 +17,10 @@
         <article class= "product-container">
             {% for vetement in Vetements %}
             <article class="product-item">
+                <article class="img-container">
                 <img class="imgproduct" src="{{ asset('img/Vetements/' ~ vetement.picture) }}" alt="{{ vetement.description }}">
+                <article class="price-overlay" style="display: none;">{{ vetement.price }}€</article>
+                </article>
                 <h3 class="product-item">{{ vetement.title }}</h3>
                 <a class="product-item" href="{{url('product.show', {'slug': vetement.title})}}">Voir ce produit</a>
             </article>

@@ -204,7 +204,19 @@ main{
     font-weight: bold;
 }
 
-  
+
+/* Page FAQ */
+
+.hidden {
+    display: none;
+}
+.content {
+    display: none;
+}
+.collapsible.active + .content {
+    display: block;
+}
+
 /* Footer */
 
 footer{

@@ -54,7 +54,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function getDataVetements():Query
     {
         return $this->createQueryBuilder('article')
-        ->select('article.title, article.picture, article.description')
+        ->select('article.title, article.picture, article.description, article.price')
         ->where('article.category = :category')
         ->setParameter('category', 3)
         ->setMaxResults(8)
