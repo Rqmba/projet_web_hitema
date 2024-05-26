@@ -1,6 +1,9 @@
 {% extends "base.html.twig" %}
 {% block title %}{{parent()}} -Page des Goodies{% endblock %}
-
+{% block javascripts %}
+<script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
+<script src="{{ asset('js/script.js')}}" defer></script>
+{% endblock %}
 {% block body %}
 <main>
     <section class="products-and-filters">
@@ -17,8 +20,8 @@
             {% for goodie in Goodies %}
             <article class="product-item">
                 <img class= "imgproduct" src="{{ asset('img/Goodie/' ~ goodie.picture) }}" alt="{{ goodie.description }}">
+                <article class="prixJs" data-redirect-url="{{ url('product.show', {'slug': goodie.title}) }}">{{ goodie.price | format_currency('EUR', locale='fr')}}</article>
                 <h3 class= "product-item">{{ goodie.title }}</h3>
-                <a class= "product-item" href="{{url('product.show', {'slug': goodie.title})}}">Voir ce produit</a>
             </article>    
             {% endfor %}
         </article>

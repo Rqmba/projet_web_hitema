@@ -74,4 +74,14 @@ class ProductController extends AbstractController
             'articles' => $this->articleRepository->getOneArticleByClick($slug)->getResult()
         ]);
     }
+
+    #[Route('/product/{slug}', name: 'manga.show', methods: ['GET'])]
+    public function showManga(string $slug): Response
+    {
+
+        return $this->render('product/showOneMangaByProduct.html.twig', [
+            'mangas' => $this->articleRepository->getOneMangaByclick($slug)->getResult(),
+            'manga' => $slug,
+        ]);
+    }
 }

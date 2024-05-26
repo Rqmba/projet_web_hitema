@@ -16,6 +16,7 @@
 }
 
 .product-item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -133,4 +134,19 @@
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
+}
+
+/* Affichage prix javascript */
+
+.prixJs{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour mieux voir le prix */
+    z-index: 1; /* Z-index pour s'assurer qu'il est au-dessus */
 }

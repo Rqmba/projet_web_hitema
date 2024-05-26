@@ -1,12 +1,17 @@
 {% extends "base.html.twig" %}
 {% block title %}{{parent()}} -Page d'acceuil{% endblock %}
-
+        {% block javascripts %}
+        <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
+        <script src="{{ asset('js/script.js')}}" defer></script>
+        <script src="{{ asset('js/scriptIndex.js')}}" defer></script>
+        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
+        {% endblock %}
 {% block body %}
 <main>
         <section class="carousel">
             <article class="slides">
 
-                <article class="slide" id="slide1_content">
+                <article class="slide">
                     <figure>
                         <img class="img_slide" src="{{ asset('img/Goodie/epée_rengoku.jpg')}}" alt="Photo d'un katana du manga demon slayer avec le personnage de rengoku kyojuro pour démontrer la promotion">
                     </figure>
@@ -17,7 +22,7 @@
                     </figcaption>
                 </article>
 
-                <article class="slide" id="slide2_content">
+                <article class="slide">
                     <figure>
                         <img class="img_slide" src="{{ asset('img/slidejapanexpo.jpg')}}" alt="Affiche promotionnel de la Japan Expo  démontrant la convention qui se deroulera du 11 au 14 juillet">
                     </figure>
@@ -28,7 +33,7 @@
                     </figcaption>
                 </article>
 
-                <article class="slide" id="slide3_content">
+                <article class="slide">
                     <figure>
                         <img class="img_slide" src="{{ asset('img/slidergokuangel.jpg')}}" alt="Poster de sangoku volant vers le paradis avec le kaioshin, en hommage à Akira toriya, l'autheur de Dragon ball">
                     </figure>
@@ -36,14 +41,11 @@
                         <h3>Triste nouvelle...</h3>
                         <h2>En raison du décès de Mr.toriyama, tout nos articles dragon ball sont en promotion.</h2>
                             <p>Promos de -50%, sur tout les articles Dragon ball, en hommage à Toriyama-Sensei.</p>
-                    </figcaption>                    
-                </article>
-
-                <button class="prev" onclick="prevSlide()">&#10094;</button>
-                <button class="next" onclick="nextSlide()">&#10095;</button>
-
-                </article>
+                    </figcaption> 
+                    </article>                   
             </article>
+               <button class="prev">&#10094;</button>
+                <button class="next">&#10095;</button>
         </section>
     <section>
 
@@ -54,8 +56,8 @@
             {% for article in articlesAllFigurines %}
             <article class="product-item">
             <img class="imgproduct" src="{{ asset('img/Figurine/' ~ article.picture) }}" alt="{{ article.title }}">
+            <article class="prixJs" data-redirect-url="{{ url('product.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>
             <h3 "product-item">{{ article.title }}</h3>
-            <a class="product-item" href="{{url('product.show', {'slug': article.title})}}">Voir ce produit</a>
             </article>
             {% endfor %}
         </article>
@@ -68,8 +70,8 @@
             {% for article in articlesDB %}
                 <article class= "product-item">
                 <img class="imgproduct" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
+                <article class="prixJs" data-redirect-url="{{ url('product.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>                
                 <h3 class="product-item">{{ article.title }}</h3>
-                <a class="product-item" href="{{url('product.show', {'slug': article.title})}}">Voir ce produit</a>
                 </article>
                 {% endfor %}
         </article>

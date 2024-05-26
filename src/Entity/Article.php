@@ -51,14 +51,14 @@ class Article
     private ?Category $category = null;
 
     /**
-     * @var Collection<int, OrderDetails>
+     * @var Collection<int, OrdersDetails>
      */
-    #[ORM\OneToMany(targetEntity: OrderDetails::class, mappedBy: 'article_id')]
-    private Collection $orderDetails;
+    #[ORM\OneToMany(targetEntity: OrdersDetails::class, mappedBy: 'article')]
+    private Collection $ordersDetails;
 
     public function __construct()
     {
-        $this->orderDetails = new ArrayCollection();
+        $this->ordersDetails = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -187,32 +187,33 @@ class Article
     }
 
     /**
-     * @return Collection<int, OrderDetails>
+     * @return Collection<int, OrdersDetails>
      */
-    public function getOrderDetails(): Collection
+    public function getOrdersDetails(): Collection
     {
-        return $this->orderDetails;
+        return $this->ordersDetails;
     }
 
-    public function addOrderDetail(OrderDetails $orderDetail): static
+    public function addOrdersDetail(OrdersDetails $ordersDetail): static
     {
-        if (!$this->orderDetails->contains($orderDetail)) {
-            $this->orderDetails->add($orderDetail);
-            $orderDetail->setArticleId($this);
+        if (!$this->ordersDetails->contains($ordersDetail)) {
+            $this->ordersDetails->add($ordersDetail);
+            $ordersDetail->setArticle($this);
         }
 
         return $this;
     }
 
-    public function removeOrderDetail(OrderDetails $orderDetail): static
+    public function removeOrdersDetail(OrdersDetails $ordersDetail): static
     {
-        if ($this->orderDetails->removeElement($orderDetail)) {
+        if ($this->ordersDetails->removeElement($ordersDetail)) {
             // set the owning side to null (unless already changed)
-            if ($orderDetail->getArticleId() === $this) {
-                $orderDetail->setArticleId(null);
+            if ($ordersDetail->getArticle() === $this) {
+                $ordersDetail->setArticle(null);
             }
         }
 
         return $this;
     }
 }
+

@@ -34,7 +34,7 @@ class OtherController extends AbstractController
         $form->handleRequest($this->request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($model);
+            // dd($model);
             $this->entityManager->persist($model);
             $this->entityManager->flush();
 

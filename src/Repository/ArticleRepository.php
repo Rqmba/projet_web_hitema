@@ -22,7 +22,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function getDataAllArticles(): Query
     {
         return $this->createQueryBuilder('article')
-            ->select('article.title', 'article.picture', 'article.description', 'category.name as categoryName')
+            ->select('article.title', 'article.picture', 'article.description','article.price' , 'category.name as categoryName')
             ->leftJoin('article.category', 'category')
             ->orderBy('article.releaseDate', 'DESC')
             ->setMaxResults(8)
@@ -43,7 +43,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function getDataGoodies():Query
     {
         return $this->createQueryBuilder('article')
-        ->select('article.title, article.picture','article.description')
+        ->select('article.title, article.picture ,article.description, article.price')
         ->where('article.category = :category')
         ->setParameter('category', 2)
         ->setMaxResults(8)
@@ -65,7 +65,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function getDataArticleDB():Query
     {
         return $this->createQueryBuilder('article')
-        ->select('article.title, article.picture, article.description, category.name as categoryName')
+        ->select('article.title, article.picture, article.description, article.price,  category.name as categoryName')
         ->leftJoin('article.category', 'category')
         ->where('article.manga = :manga')
         ->setParameter('manga', 1)
@@ -80,6 +80,16 @@ class ArticleRepository extends ServiceEntityRepository
         ->leftJoin('article.category', 'category')
         ->where('article.title = :title')
         ->setParameter('title', $title)
+        ->getQuery();
+    }
+
+    public function getOneMangaByclick(string $manga):Query
+    {
+        return $this->createQueryBuilder('article')
+        ->select('article')
+        ->leftJoin('article.manga', 'manga')
+        ->where('manga.name = :name')
+        ->setParameter('manga', $manga)
         ->getQuery();
     }
 

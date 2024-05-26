@@ -28,23 +28,19 @@ class Orders
     #[ORM\Column(length: 20)]
     private ?string $statut = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orders_id')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
-
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user_id = null;
+    private ?User $User = null;
 
     /**
-     * @var Collection<int, OrderDetails>
+     * @var Collection<int, OrdersDetails>
      */
-    #[ORM\OneToMany(targetEntity: OrderDetails::class, mappedBy: 'orders_id')]
-    private Collection $orderDetails;
+    #[ORM\OneToMany(targetEntity: OrdersDetails::class, mappedBy: 'orders')]
+    private Collection $OrdersDetails;
 
     public function __construct()
     {
-        $this->orderDetails = new ArrayCollection();
+        $this->OrdersDetails = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -102,52 +98,40 @@ class Orders
 
     public function getUser(): ?User
     {
-        return $this->user;
+        return $this->User;
     }
 
-    public function setUser(?User $user): static
+    public function setUser(?User $User): static
     {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getUserId(): ?User
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(?User $user_id): static
-    {
-        $this->user_id = $user_id;
+        $this->User = $User;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, OrderDetails>
+     * @return Collection<int, OrdersDetails>
      */
-    public function getOrderDetails(): Collection
+    public function getOrdersDetails(): Collection
     {
-        return $this->orderDetails;
+        return $this->OrdersDetails;
     }
 
-    public function addOrderDetail(OrderDetails $orderDetail): static
+    public function addOrdersDetail(OrdersDetails $ordersDetail): static
     {
-        if (!$this->orderDetails->contains($orderDetail)) {
-            $this->orderDetails->add($orderDetail);
-            $orderDetail->setOrdersId($this);
+        if (!$this->OrdersDetails->contains($ordersDetail)) {
+            $this->OrdersDetails->add($ordersDetail);
+            $ordersDetail->setOrders($this);
         }
 
         return $this;
     }
 
-    public function removeOrderDetail(OrderDetails $orderDetail): static
+    public function removeOrdersDetail(OrdersDetails $ordersDetail): static
     {
-        if ($this->orderDetails->removeElement($orderDetail)) {
+        if ($this->OrdersDetails->removeElement($ordersDetail)) {
             // set the owning side to null (unless already changed)
-            if ($orderDetail->getOrdersId() === $this) {
-                $orderDetail->setOrdersId(null);
+            if ($ordersDetail->getOrders() === $this) {
+                $ordersDetail->setOrders(null);
             }
         }
 

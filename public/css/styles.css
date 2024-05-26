@@ -121,11 +121,13 @@ main{
 .carousel {
     position: relative;
     overflow: hidden;
+    width: 100%;
   }
   
   .slides {
     display: flex;
     transition: transform 0.5s ease;
+    width: 100%;
   }
   
   .slide {
@@ -134,6 +136,7 @@ main{
     flex-direction: row;
     /* justify-content: center; */
     align-items: center;
+    width: 100%;
   }
 
 .slide figure{
@@ -158,6 +161,8 @@ main{
     cursor: pointer;
     width: 2rem;
     line-height: 15rem;
+    z-index: 10;
+    
 }
   
   .prev {
@@ -210,11 +215,41 @@ main{
 .hidden {
     display: none;
 }
-.content {
-    display: none;
+.content{
+text-align: justify;
+    font-size: 1.2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
-.collapsible.active + .content {
-    display: block;
+
+
+.faq_container{
+    display:flex;
+    margin: 2rem;
+}
+
+.faq_text {
+    flex: 1;
+}
+
+.faq_text h3{
+    border: 1px solid #ccc; /* Ajoute une bordure grise autour de chaque produit */
+    border-radius: 0.5rem; /* Arrondit les coins du cadre */
+    padding: 1rem; /* Ajoute un peu d'espace à l'intérieur du cadre */
+    background-color: #fdfdfd88;
+}
+
+.faq_text article {
+    margin-bottom: 2rem;
+}
+
+.menu_filter {
+    width: 20%;
+    margin-right: 2rem;
+    border: 1px solid #ccc; /* Ajoute une bordure grise autour de chaque produit */
+    border-radius: 0.5rem; /* Arrondit les coins du cadre */
+    padding: 1rem; /* Ajoute un peu d'espace à l'intérieur du cadre */
+    background-color: #fdfdfd88;
 }
 
 /* Footer */

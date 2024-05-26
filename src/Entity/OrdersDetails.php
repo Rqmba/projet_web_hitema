@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderDetailsRepository;
+use App\Repository\OrdersDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OrderDetailsRepository::class)]
-class OrderDetails
+#[ORM\Entity(repositoryClass: OrdersDetailsRepository::class)]
+class OrdersDetails
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,13 +19,13 @@ class OrderDetails
     #[ORM\Column]
     private ?float $price = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orderDetails')]
+    #[ORM\ManyToOne(inversedBy: 'OrdersDetails')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Orders $orders_id = null;
+    private ?Orders $orders = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orderDetails')]
+    #[ORM\ManyToOne(inversedBy: 'ordersDetails')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Article $article_id = null;
+    private ?Article $article = null;
 
     public function getId(): ?int
     {
@@ -56,26 +56,26 @@ class OrderDetails
         return $this;
     }
 
-    public function getOrdersId(): ?Orders
+    public function getOrders(): ?Orders
     {
-        return $this->orders_id;
+        return $this->orders;
     }
 
-    public function setOrdersId(?Orders $orders_id): static
+    public function setOrders(?Orders $orders): static
     {
-        $this->orders_id = $orders_id;
+        $this->orders = $orders;
 
         return $this;
     }
 
-    public function getArticleId(): ?Article
+    public function getArticle(): ?Article
     {
-        return $this->article_id;
+        return $this->article;
     }
 
-    public function setArticleId(?Article $article_id): static
+    public function setArticle(?Article $article): static
     {
-        $this->article_id = $article_id;
+        $this->article = $article;
 
         return $this;
     }

@@ -1,7 +1,11 @@
 
 {% extends "base.html.twig" %}
-{% block title %}{{parent()}} -Page des Figurines{% endblock %}
-
+{% block title %}{{parent()}} -Page des Figurines{% endblock %}        {% block javascripts %}
+        <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
+        <script src="{{ asset('js/script.js')}}" defer></script>
+        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
+        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
+        {% endblock %}
 {% block body %}
 <main>
 
@@ -12,7 +16,7 @@
             <h3>Nos Figurines</h3>
             {% for manga in Mangas %}
             <ul>
-            <li><a href="#">{{manga.name}}</a></li>
+            <li><a href="{{ url('product.show', {'slug': manga.name}) }}">{{manga.name}}</a></li>
             </ul>
             {% endfor %}
         </article>
@@ -21,9 +25,8 @@
             {% for figurine in Figurines %}
             <article class="product-item">
                 <img class= "imgproduct" src="{{ asset('img/Figurine/' ~ figurine.picture) }}" alt="{{ figurine.description }}">
+                <article class="prixJs" data-redirect-url="{{ url('manga.show', {'slug': figurine.title}) }}">{{ figurine.price | format_currency('EUR', locale='fr')}}</article>
                 <h3 class ="product-item">{{ figurine.title }}</h3>
-                <span class="product-price" style="display: none;">{{ figurine.price }}</span>
-                <a class="product-item" href="{{url('product.show', {'slug': figurine.title})}}">Voir ce produit</a>
             </article>
             {% endfor %}
         </article>

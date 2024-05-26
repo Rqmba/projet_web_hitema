@@ -1,6 +1,11 @@
 {% extends "base.html.twig" %}
 {% block title %}{{parent()}} -Page d'acceuil{% endblock %}
-
+        {% block javascripts %}
+        <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
+        <script src="{{ asset('js/script.js')}}" defer></script>
+        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
+        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
+        {% endblock %}
 {% block body %}
 <article class= "product-container">
 {% for article in mangas %}

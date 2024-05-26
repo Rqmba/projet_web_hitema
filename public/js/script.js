@@ -1,71 +1,42 @@
-// Js du carousel
 
-let slideIndex = 1;
+console.log("Le fichier JavaScript fonctionne !");
 
-function showSlide(n) {
-  const slides = document.getElementsByClassName("slide");
-  if (n > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slides[slideIndex - 1].style.display = "block";
-}
 
-function nextSlide() {
-  showSlide(slideIndex += 1);
-}
 
-function prevSlide() {
-  showSlide(slideIndex -= 1);
-}
+// Js des blocs produits
+let productItems = document.querySelectorAll('.product-item');
 
-showSlide(slideIndex);
+// Boucle sur chaque élément .product-item
+productItems.forEach(productItem => {
+    productItem.addEventListener("mouseover", () => {
+        let displayPrice = productItem.querySelector('.prixJs');
+        displayPrice.style.display = 'flex';
+    });
 
-// Page FAQ
+  
+    productItem.addEventListener("mouseout", () => {
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Gérer les clics sur les éléments de menu
-  document.querySelectorAll('.menu-item').forEach(function(link) {
-      link.addEventListener('click', function(event) {
-          event.preventDefault();
-          let targetId = this.getAttribute('data-target');
-          document.querySelectorAll('article').forEach(function(article) {
-              article.classList.add('hidden');
-          });
-          document.getElementById(targetId).classList.remove('hidden');
-      });
-  });
-
-  // Gérer les clics sur les titres <h4>
-  document.querySelectorAll('.collapsible').forEach(function(header) {
-      header.addEventListener('click', function() {
-          this.classList.toggle('active');
-      });
-  });
+        let displayPrice = productItem.querySelector('.prixJs');
+        // Masque la div .prixJs
+        displayPrice.style.display = 'none';
+    });
 });
 
+// Sélectionnez tous les éléments .prixJs
+let prixJsElements = document.querySelectorAll('.prixJs');
 
-// Affichage prix
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  const productItems = document.querySelectorAll('.product-item');
-
-  productItems.forEach(item => {
-      const imgContainer = item.querySelector('.img-container');
-      const priceOverlay = item.querySelector('.price-overlay');
-
-      imgContainer.addEventListener('mouseover', () => {
-          priceOverlay.style.display = 'block';
-      });
-
-      imgContainer.addEventListener('mouseout', () => {
-          priceOverlay.style.display = 'none';
-      });
-  });
+// Bouclez sur chaque élément .prixJs
+prixJsElements.forEach(prixJsElement => {
+    // Ajoutez un gestionnaire d'événements pour le clic sur l'élément .prixJs
+    prixJsElement.addEventListener("click", () => {
+        // Récupérez l'URL de redirection à partir de l'attribut data-redirect-url
+        let redirectURL = prixJsElement.dataset.redirectUrl;
+        // Redirigez vers l'URL récupérée
+        window.location.href = redirectURL;
+    });
 });
+
+// Js du FAQ
+
+
 

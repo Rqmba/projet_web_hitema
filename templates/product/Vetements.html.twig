@@ -1,33 +1,31 @@
 {% extends "base.html.twig" %}
-{% block title %}{{parent()}} -Page des Vetements{% endblock %}
-
+{% block title %}{{ parent() }} - Page des Vetements{% endblock %}        {% block javascripts %}
+        <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
+        <script src="{{ asset('js/script.js')}}" defer></script>
+        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
+        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
+        {% endblock %}
 {% block body %}
 <main>
     <section class="products-and-filters">
-    
-            <article class="menu_filter">
+        <article class="menu_filter">
             <h3>Nos Vetements</h3>
-            {% for manga in Mangas %}
             <ul>
-            <li><a href="#">{{manga.name}}</a></li>
+                {% for manga in Mangas %}
+                <li><a href="#">{{ manga.name }}</a></li>
+                {% endfor %}
             </ul>
-            {% endfor %}
         </article>
 
-        <article class= "product-container">
+        <article class="product-container">
             {% for vetement in Vetements %}
             <article class="product-item">
-                <article class="img-container">
                 <img class="imgproduct" src="{{ asset('img/Vetements/' ~ vetement.picture) }}" alt="{{ vetement.description }}">
-                <article class="price-overlay" style="display: none;">{{ vetement.price }}€</article>
-                </article>
+                <article class="prixJs" data-redirect-url="{{ url('product.show', {'slug': vetement.title}) }}">{{ vetement.price | format_currency('EUR', locale='fr')}}</article>
                 <h3 class="product-item">{{ vetement.title }}</h3>
-                <a class="product-item" href="{{url('product.show', {'slug': vetement.title})}}">Voir ce produit</a>
             </article>
             {% endfor %}
         </article>
     </section>
-
 </main>
-
 {% endblock %}

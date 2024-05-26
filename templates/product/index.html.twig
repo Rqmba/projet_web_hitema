@@ -1,6 +1,11 @@
 {% extends "base.html.twig" %}
 {% block title %}{{parent()}} -Page de tout les articles{% endblock %}
-
+        {% block javascripts %}
+        <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
+        <script src="{{ asset('js/script.js')}}" defer></script>
+        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
+        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
+        {% endblock %}
 {% block body %}
 <main>
     <section class="products-and-filters">
@@ -17,8 +22,8 @@
             {% for article in allArticles %}
             <article class="product-item">
             <img class="imgproduct" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
+            <article class="prixJs" data-redirect-url="{{ url('product.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>
             <h3 class="product-item">{{ article.title }}</h3>
-            <a class="product-item" href="{{url('product.show', {'slug': article.title})}}">Voir ce produit</a>
     </article>
             {% endfor %}
         </article>
