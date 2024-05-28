@@ -243,13 +243,12 @@ text-align: justify;
     margin-bottom: 2rem;
 }
 
-.menu_filter {
-    width: 20%;
-    margin-right: 2rem;
-    border: 1px solid #ccc; /* Ajoute une bordure grise autour de chaque produit */
-    border-radius: 0.5rem; /* Arrondit les coins du cadre */
-    padding: 1rem; /* Ajoute un peu d'espace à l'intérieur du cadre */
-    background-color: #fdfdfd88;
+.menu_filter_faq {
+    width: 50%;
+}
+
+.menu_filter_faq a {
+    font-size: 1.5rem;
 }
 
 /* Footer */

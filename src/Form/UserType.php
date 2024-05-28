@@ -17,18 +17,18 @@ class UserType extends AbstractType
             ->add('email', EmailType::class)
             // ->add('roles')
             ->add('password', PasswordType::class)
-            // ->add('lastname')
-            // ->add('firstname')
-            // ->add('birthday', null, [
-            //     'widget' => 'single_text',
-            // ])
-            // ->add('adresse')
-            // ->add('zipCode')
-            // ->add('city')
-            // ->add('country')
-            // ->add('createdAt', null, [
-            //     'widget' => 'single_text',
-            // ])
+            ->add('lastname')
+            ->add('firstname')
+            ->add('birthday', null, [
+                'widget' => 'single_text',
+            ])
+            ->add('adresse')
+            ->add('zipCode')
+            ->add('city')
+            ->add('country')
+            ->add('createdAt', null, [
+                'widget' => 'single_text',
+            ])
         ;
     }
 

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de recherche{% endblock %}
+{% block javascripts %}
+        <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
+        <script src="{{ asset('js/script.js')}}" defer></script>
+        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
+        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
+{% endblock %}
+{% block body %}
+    <h1>Résultats de recherche</h1>
+    
+    {{ form_start(searchForm) }}
+        {{ form_widget(searchForm) }}
+        <button type="submit">Rechercher</button>
+    {{ form_end(searchForm) }}
+
+    <h2>Articles trouvés :</h2>
+    {% if articles is empty %}
+        <p>Aucun article trouvé pour "{{ query }}"</p>
+    {% else %}
+        <ul>
+            {% for article in articles %}
+                <article class="product-item">
+                <img class="imgproduct" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
+                <article class="prixJs" data-redirect-url="{{ url('manga.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>
+                <h3 class ="product-item">{{ article.title }}</h3>
+            </article>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

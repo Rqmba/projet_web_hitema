@@ -1,13 +1,14 @@
 {% extends "base.html.twig" %}
 
 {% block javascripts %}
+<script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
 <script src="{{ asset('js/scriptFaq.js')}}" defer></script>
 {% endblock %}
 
 {% block body %}
 <main>
     <section class="faq_container">
-        <article class="menu_filter">
+        <article class="menu_filter_faq">
             <ul>
                 <li><a href="#" class="menu-item" data-target="text_hide1">Shop</a></li>
                 <li><a href="#" class="menu-item" data-target="text_hide2">Produit</a></li>

@@ -93,6 +93,18 @@ class ArticleRepository extends ServiceEntityRepository
         ->getQuery();
     }
 
+    public function findArticleBySearch(string $query): array
+    {
+        return $this->createQueryBuilder('article')
+        // ->leftJoin('article.manga', 'manga')
+        ->where('article.title LIKE :query')
+        // ->andWhere('manga.name =name')
+        ->orWhere('article.description LIKE :query')
+        ->setParameter('article', '%' . $query . '%')
+        ->getQuery()
+        ->getResult();
+    }
+
     //    /**
     //     * @return Article[] Returns an array of Article objects
     //     */

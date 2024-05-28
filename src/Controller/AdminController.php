@@ -8,7 +8,7 @@
 
 // class AdminHomepageController extends AbstractController
 // {
-//     #[Route('/', name:'admin.homepage.index', methods:['GET'])]
+//     #[Route('/', name:'admin.index.form', methods:['GET'])]
 //     public function adminIndex():Response
 //     {
 //         return $this->render('admin/homepage/index.html.twig');
