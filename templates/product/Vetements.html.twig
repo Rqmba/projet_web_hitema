@@ -21,7 +21,7 @@
             {% for vetement in Vetements %}
             <article class="product-item">
                 <img class="imgproduct" src="{{ asset('img/Vetements/' ~ vetement.picture) }}" alt="{{ vetement.description }}">
-                <article class="prixJs" data-redirect-url="{{ url('product.show', {'slug': vetement.title}) }}">{{ vetement.price | format_currency('EUR', locale='fr')}}</article>
+                <article class="priceJs" data-redirect-url="{{ url('product.show', {'slug': vetement.title}) }}">{{ vetement.price | format_currency('EUR', locale='fr')}}</article>
                 <h3 class="product-item">{{ vetement.title }}</h3>
             </article>
             {% endfor %}

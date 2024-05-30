@@ -13,6 +13,20 @@ class UserFixtures extends Fixture
 {
     private array $users = [
         [
+            'lastname' => 'TestSadminLastname',
+            'firstname' => 'TestSadminFirstname',
+            'birthday' => '2021-01-03',
+            'email' => 'sadmin@sadmin.fr',
+            'createdAt' => '2000-01-05',
+            'adresse' => '3 rue de lSadmin',
+            'zipCode' => 45000,
+            'city' => 'Orléans',
+            'country' => 'France',
+            'roles' => [ 'ROLE_SUPER_ADMIN', ],
+            'password' => 'sadmin',
+        ],
+
+        [
             'lastname' => 'TestUserLastname',
             'firstname' => 'TestUserFirstname',
             'birthday' => '2001-02-01',
@@ -23,6 +37,7 @@ class UserFixtures extends Fixture
             'city' => 'Orléans',
             'country' => 'France',
             'roles' => [ 'ROLE_ADMIN', ],
+            'password' => 'admin',
         ],
 
         [
@@ -36,6 +51,7 @@ class UserFixtures extends Fixture
             'city' => 'Orléans',
             'country' => 'France',
             'roles' => [ 'ROLE_USER', ],
+            'password' => 'user',
         ],
     ];
 
@@ -58,7 +74,7 @@ class UserFixtures extends Fixture
             ->setZipCode($user['zipCode'])
             ->setCity($user['city'])
             ->setCountry($user['country'])
-            ->setPassword($this->userPasswordHasher->hashPassword($entity, $user['email']))
+            ->setPassword($this->userPasswordHasher->hashPassword($entity, $user['password']))
             ->setRoles($user['roles'])
             ;
 

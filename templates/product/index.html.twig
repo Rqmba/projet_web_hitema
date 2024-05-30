@@ -22,7 +22,7 @@
             {% for article in allArticles %}
             <article class="product-item">
             <img class="imgproduct" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
-            <article class="prixJs" data-redirect-url="{{ url('product.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>
+            <article class="priceJs" data-redirect-url="{{ url('product.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>
             <h3 class="product-item">{{ article.title }}</h3>
     </article>
             {% endfor %}

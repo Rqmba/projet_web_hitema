@@ -26,7 +26,7 @@
             {% for figurine in Figurines %}
             <article class="product-item">
                 <img class= "imgproduct" src="{{ asset('img/Figurine/' ~ figurine.picture) }}" alt="{{ figurine.description }}">
-                <article class="prixJs" data-redirect-url="{{ url('manga.show', {'slug': figurine.title}) }}">{{ figurine.price | format_currency('EUR', locale='fr')}}</article>
+                <article class="priceJs" data-redirect-url="{{ url('manga.show', {'slug': figurine.title}) }}">{{ figurine.price | format_currency('EUR', locale='fr')}}</article>
                 <h3 class ="product-item">{{ figurine.title }}</h3>
             </article>
             {% endfor %}

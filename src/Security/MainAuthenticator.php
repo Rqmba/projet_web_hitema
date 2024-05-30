@@ -34,7 +34,7 @@ class MainAuthenticator extends AbstractLoginFormAuthenticator
 
         // dd($email,$password);
         // $email = $request->getPayload()->getString('email');
-
+        // dd($email);
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
 
         return new Passport(
@@ -51,7 +51,7 @@ class MainAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        $landingRoute = in_array('ROLE_ADMIN', $token->getRoleNames()) ? 'admin.homepage.index' : 'homepage.index';
+        $landingRoute = in_array('ROLE_ADMIN', $token->getRoleNames()) ? 'admin.index' : 'homepage.index';
 
         // For example:
          return new RedirectResponse($this->urlGenerator->generate($landingRoute));

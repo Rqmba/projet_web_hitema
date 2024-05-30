@@ -53,10 +53,4 @@ class HomepageController extends AbstractController
             "articlesDB" => $this-> articleRepository->getDataArticleDB()->getResult()
         ]);
     }
-
-    #[Route('/', name:'admin.homepage.index', methods:['GET'])]
-    public function adminIndex():Response
-    {
-        return $this->render('admin/homepage/index.html.twig');
-    }
 }

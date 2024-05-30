@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% block title %}{{parent()}} -Vos commandes{% endblock %}
+
+{% block body %}
+<main>
+    <h1>Tableau de commandes</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Vos options</th>
+                    <th>Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                {# {% for order in orders %} #}
+                    <tr>
+                        <td>img product</td>
+                        <td>article, prix</td>
+                        <td>quantité</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn-primary">Voir</a>
+                            <a href="" class="btn btn-sm btn-warning">Modifier</a>
+                            <a href="" class="btn btn-sm btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {# {% endfor %} #}
+            </tbody>
+            <thead>
+                <tr>
+                    <th>Total</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</main>
+
+{% endblock %}

@@ -1,33 +1,29 @@
 /* Les bases fixes */
-*{
+* {
     box-sizing: border-box;
 }
 
-html{
-    font-size: 62,5%;
+html {
+    font-size: 62.5%;
 }
 
-body{
-    font-size: 16px;
+body {
     background-color: lightgray;
     line-height: 1.5;
     height: 100vh;
     width: 100vw;
-
 }
 
-img, video{
+img, video {
     width: 100%;
 }
 
-
 /* Header */
-.header1{
+.header1 {
     background-color: palegreen;
 }
 
-/* Naviguateur */
-
+/* Navigateur */
 h1 {
     padding: 0.5rem;
     font-size: 3rem;
@@ -38,26 +34,26 @@ h1 {
 h2 {
     padding: 0.5rem;
     font-size: 1.7rem;
-    color:black;
+    color: black;
     font-weight: bold;
 }
 
-h3{
+h3 {
     padding: 0.5rem;
     font-size: 1.5rem;
-    color:black;
+    color: black;
 }
 
 .border-bottom {
-    border-bottom: 4rem solid black; /* Ajoute une bordure inférieure */
-    padding-bottom: 10px; /* Ajoute un espacement sous la bordure */
+    border-bottom: 4rem solid black;
+    padding-bottom: 10px;
 }
 
 /* Banniere */
 .Banniere {
     background-image: url(../img/EXrI7OUU8AAw9J0.jpg);
     height: 10rem;
-     background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -65,9 +61,10 @@ h3{
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    }
+}
+
 /* Header, FAQ, burger */
-.menu1{
+.menu1 {
     height: 3rem;
 }
 
@@ -77,20 +74,18 @@ h3{
 }
 
 /* Faq */
-.faq{
+.faq {
     padding-left: 1rem;
     padding-top: 1rem;
 }
 
-.burger{
+.burger {
     text-align: end;
 }
 
-
-.menu{
-    /* height: 10rem; */
+.menu {
     display: flex;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     align-items: center;
     font-size: 1.2rem;
     font-weight: bolder;
@@ -106,51 +101,43 @@ h3{
 }
 
 /* Main */
-
-main{
-    /* width: 100vw; */
+main {
     margin-inline: auto;
     background-color: rgba(239, 224, 206, 0.815);
     padding: 1rem;
 }
 
-
-
 /* Slider */
-
 .carousel {
     position: relative;
     overflow: hidden;
     width: 100%;
-  }
-  
-  .slides {
+}
+
+.slides {
     display: flex;
     transition: transform 0.5s ease;
     width: 100%;
-  }
-  
-  .slide {
+}
+
+.slide {
     flex: 0 0 100%;
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
     align-items: center;
     width: 100%;
-  }
+}
 
-.slide figure{
-    /* display: flex;
-    gap: 3rem;
-    align-items: center; */
+.slide figure {
     width: 50%;
 }
-  .slide figcaption{
+
+.slide figcaption {
     width: 50%;
-    padding: 0 1rem; /* Ajouter un peu d'espace autour du texte */
-  }
-  
-.carousel button{
+    padding: 0 1rem;
+}
+
+.carousel button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -162,21 +149,145 @@ main{
     width: 2rem;
     line-height: 15rem;
     z-index: 10;
-    
 }
-  
-  .prev {
+
+.prev {
     left: 0;
-  }
-  
-  .next {
+}
+
+.next {
     right: 0;
-  }
+}
 
-  /* Grid de les conditions de ventes et de retour */
+/* Img */
+.imgproduct {
+    width: 10rem;
+}
 
-  .container-custom {
-    margin-top: 2rem; 
+/* Container de tous les produits de la page produits */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    width: 50%;
+}
+
+.product-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #fdfdfd;
+}
+
+.product-item img {
+    max-width: 100%;
+}
+
+.product-item h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-item a {
+    margin-top: 1.5rem;
+    background-color: rgba(243, 235, 235, 0.422);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: black;
+    opacity: 75%;
+}
+
+.products-and-filters {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-container {
+    flex: 1;
+}
+
+/* Affichage prix javascript */
+.priceJs {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+}
+
+/* Container one product */
+.container_oneproduct {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.product_container_oneproduct {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 50%;
+}
+
+.img_product_one {
+    width: 100%;
+}
+
+.img_oneproduct {
+    width: 50%;
+}
+
+.product_container_item {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 1rem;
+    padding: 1rem;
+    flex: 1;
+    width: 100%;
+}
+
+.product_container_item a {
+    background-color: rgb(168, 140, 103);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    opacity: 75%;
+}
+
+/* Container hidden */
+.img-container {
+    position: relative;
+    display: inline-block;
+}
+
+.price-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Grid de les conditions de ventes et de retour */
+.container-custom {
+    margin-top: 2rem;
     margin-bottom: 2rem;
     padding: 1rem;
     padding-inline: 2rem;
@@ -193,7 +304,7 @@ main{
     padding: 2rem;
 }
 
-.textformate{
+.textformate {
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
@@ -201,30 +312,28 @@ main{
 }
 
 .textformate p {
-    margin-bottom: 1rem; /* Ajouter une marge en bas pour chaque paragraphe */
+    margin-bottom: 1rem;
 }
 
-.textformate h3{
+.textformate h3 {
     text-decoration: underline;
     font-weight: bold;
 }
 
-
 /* Page FAQ */
-
 .hidden {
     display: none;
 }
-.content{
-text-align: justify;
+
+.content {
+    text-align: justify;
     font-size: 1.2rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
-
-.faq_container{
-    display:flex;
+.faq_container {
+    display: flex;
     margin: 2rem;
 }
 
@@ -232,10 +341,10 @@ text-align: justify;
     flex: 1;
 }
 
-.faq_text h3{
-    border: 1px solid #ccc; /* Ajoute une bordure grise autour de chaque produit */
-    border-radius: 0.5rem; /* Arrondit les coins du cadre */
-    padding: 1rem; /* Ajoute un peu d'espace à l'intérieur du cadre */
+.faq_text h3 {
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 1rem;
     background-color: #fdfdfd88;
 }
 
@@ -252,21 +361,20 @@ text-align: justify;
 }
 
 /* Footer */
-
-footer{
+footer {
     background-color: palegreen;
 }
 
-footer h3{
+footer h3 {
     font-size: 1.5rem;
     font-weight: bolder;
     padding-bottom: 0.5rem;
 }
 
-.footermenu{
+.footermenu {
     height: 20%;
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
     font-size: 1.2rem;
 }
@@ -274,11 +382,141 @@ footer h3{
 .footermenu article {
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
 }
 
 /* Mise en page adaptative */
 
+/* Smartphone en mode portrait */
+@media screen and (max-width: 767px) {
+    main {
+        background-color: rgba(43, 1, 140, 0.815);
+    }
 
+    .img_slide {
+        width: 100%;
+    }
+
+    h2 {
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        color: black;
+        font-weight: bold;
+    }
+
+    h3 {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        color: black;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: bolder;
+    }
+
+    .burger {
+        text-align: start;
+    }
+
+    .products-and-filters {
+        flex-direction: column;
+    }
+
+    .product-container {
+        width: 90%;
+    }
+}
+
+/* Smartphone en mode paysage */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    main {
+        background-color: rgba(43, 1, 140, 0.815);
+    }
+
+    .img_slide {
+        width: 100%;
+    }
+
+    h2 {
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        color: black;
+        font-weight: bold;
+    }
+
+    h3 {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        color: black;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: bolder;
+    }
+
+    .burger {
+        text-align: start;
+    }
+
+    .products-and-filters {
+        flex-direction: column;
+    }
+
+    .product-container {
+        width: 90%;
+    }
+}
+
+/* Tablette et petite ordinateur */
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    main {
+        background-color: rgba(239, 224, 206, 0.815);
+    }
+
+    .img_slide {
+        width: 100%;
+    }
+
+    h2 {
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        color: black;
+        font-weight: bold;
+    }
+
+    h3 {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        color: black;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 1.1rem;
+        font-weight: bolder;
+    }
+
+    .burger {
+        text-align: end;
+    }
+
+    .products-and-filters {
+        flex-direction: row;
+    }
+
+    .product-container {
+        width: 50%;
+    }
+}
