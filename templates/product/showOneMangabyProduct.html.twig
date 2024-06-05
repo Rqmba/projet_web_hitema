@@ -7,16 +7,13 @@
         {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
         {% endblock %}
 {% block body %}
-<article class= "product-container">
-{% for article in mangas %}
-<article class="product-item">
-    <h3 class="product-item">{{ article.title }}</h3>
-    <img class="imgproduct" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
-    <p class="product-item">{{article.description}}</p>
-    <p class="product-item">{{article.price | format_currency('EUR', locale='fr')}}</p>
-    <a class="product-item" href="{{url('product.show', {'slug': article.title})}}">Ajouter au panier</a>
-</article>
-
-{% endfor %}
-</article>
+    <article class="product-container">
+        {% for article in articles %}
+            <article class="product-item">
+                <img class="imgproduct" src="{{ asset('img/Figurine/' ~ article.picture) }}" alt="{{ article.description }}">
+                <article class="priceJs" data-redirect-url="{{ url('manga.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>
+                <h3 class="product-item">{{ article.title }}</h3>
+            </article>
+        {% endfor %}
+    </article>
 {% endblock %}

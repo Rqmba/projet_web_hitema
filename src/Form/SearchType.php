@@ -28,10 +28,10 @@ class SearchType extends AbstractType
             // ->add('description')
             // ->add('price')
             // ->add('quantityinStock')
-            // ->add('releaseDate', null, [
-            //     'widget' => 'single_text',
-            // ])
-            // ->add('statut')
+            // // ->add('releaseDate', null, [
+            // //     'widget' => 'single_text',
+            // // ])
+            // // ->add('statut')
             // ->add('manga', EntityType::class, [
             //     'class' => Manga::class,
             //     'choice_label' => 'id',

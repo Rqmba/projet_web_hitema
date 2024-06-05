@@ -17,7 +17,7 @@
             <h3>Nos Figurines</h3>
             {% for manga in Mangas %}
             <ul>
-            <li><a href="{{ url('product.show', {'slug': manga.name}) }}">{{manga.name}}</a></li>
+            <li><a href="{{ url('manga.show', {'name': manga.name}) }}">{{manga.name}}</a></li>
             </ul>
             {% endfor %}
         </article>
@@ -26,7 +26,7 @@
             {% for figurine in Figurines %}
             <article class="product-item">
                 <img class= "imgproduct" src="{{ asset('img/Figurine/' ~ figurine.picture) }}" alt="{{ figurine.description }}">
-                <article class="priceJs" data-redirect-url="{{ url('manga.show', {'slug': figurine.title}) }}">{{ figurine.price | format_currency('EUR', locale='fr')}}</article>
+                <article class="priceJs" data-redirect-url="{{ url('product.show', {'slug': figurine.title}) }}">{{ figurine.price | format_currency('EUR', locale='fr')}}</article>
                 <h3 class ="product-item">{{ figurine.title }}</h3>
             </article>
             {% endfor %}

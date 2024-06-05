@@ -1,3 +1,7 @@
+         {% block javascripts %}
+        <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
+        <script src="{{ asset('js/scriptSearchbar.js')}}" defer></script>
+        {% endblock %}
  <header>
         <section class="Banniere"><h1>Shonen world</h1></section>
 
@@ -85,10 +89,15 @@
       </ul>
     </article>
       
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <form id="headerSearchForm" class="d-flex" role="search">
+      <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit" style="opacity: 1;">Search</button>
     </form>
+    <div class="search-results-container">
+    <ul id="search-results">
+        
+    </ul>
+</div>
   </article>
 </nav>
 </header>

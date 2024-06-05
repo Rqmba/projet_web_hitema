@@ -36,7 +36,3 @@ priceJsElements.forEach(priceJsElement => {
     });
 });
 
-// Js du FAQ
-
-
-

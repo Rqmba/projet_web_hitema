@@ -2,43 +2,47 @@
 
 namespace App\Controller;
 
-use App\Form\SearchType;
 use App\Repository\ArticleRepository;
-use App\Repository\MangaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-    public function __construct(
-        readonly private ArticleRepository $articleRepository,
-        readonly private MangaRepository $mangaRepository,
-        ) 
-        {
-        }
-    
+    // public function __construct(
+    //     readonly private ArticleRepository $articleRepository,
+    // ) 
+    // {
+
+    // }
     #[Route('/search', name:'search.index')]
-    public function searchIndex(Request $request): Response
+    public function search(Request $request, ArticleRepository $articleRepository): JsonResponse
     {
-        $form = $this->createForm(SearchType::class);
-        $form->handleRequest($request);
+        $query = $request->query->get('query', '');
 
-        $article = [];
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            dd($form);
-            $query = $form->get('query')->getData();
-            $article = $this->articleRepository->findArticleBySearch($query);
-
+        if ($query) { 
+            $article = $articleRepository->findArticleBySearch($query);
+        } else {
+           $article = [];
         }
 
-        return $this->render('form/searchIndex.html.twig', [
-            'searchForm' => $form->createView(),
-            'article' => $article,
-        ]);
-       
+        $data = [];
+
+        foreach ($article as $articles) 
+        {
+            $data[] = [
+                'title' => $articles->getTitle(),
+                'slug' => $articles->getSlug(),
+                'description' => $articles->getDescription(),
+                'picture' => $articles->getPicture(),
+                'categoryName' => $articles->getCategory()->getName(),
+                'price' => $articles->getPrice(),
+
+            ];
+        }
+        return new JsonResponse($data);
     }
 
+    
 }

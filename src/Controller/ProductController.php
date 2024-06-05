@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use App\Entity\OrdersDetails;
 use App\Repository\ArticleRepository;
 use App\Repository\MangaRepository;
+use App\Repository\OrdersDetailsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +20,8 @@ class ProductController extends AbstractController
     public function __construct(
         readonly private ArticleRepository $articleRepository,
         readonly private MangaRepository $mangaRepository,
+        readonly private OrdersDetailsRepository $ordersDetailsRepository,
+        readonly private EntityManagerInterface $entityManagerInterface,
     ) 
     {
     
@@ -71,17 +77,37 @@ class ProductController extends AbstractController
     {
 
         return $this->render('product/showOneProduct.html.twig', [
-            'articles' => $this->articleRepository->getOneArticleByClick($slug)->getResult()
+            'articles' => $this->articleRepository->getOneArticleByClick($slug)->getResult(),
+            // 'articles' => $this->articleRepository->findBy(['slug']),
         ]);
     }
 
-    #[Route('/product/{slug}', name: 'manga.show', methods: ['GET'])]
-    public function showManga(string $slug): Response
+    #[Route('/product/{name}', name: 'manga.show', methods: ['GET'])]
+    public function showManga(string $name): Response
     {
 
         return $this->render('product/showOneMangaByProduct.html.twig', [
-            'mangas' => $this->articleRepository->getOneMangaByclick($slug)->getResult(),
-            'manga' => $slug,
+
+            'articles' => $this->articleRepository->findBy(['title']),
+            'mangas' => $this->mangaRepository->findBy(['name']),
+            'name' => $name,
+        ]);
+    }
+
+    #[Route('/product/user/{slug}', name:'productShip.show', methods:['GET'])]
+    public function showProductShip(string $slug): Response
+    {
+        // $product = $entityManagerInterface->articleRepository(Article::class)->find($slug);
+        // if (!$product) {
+        //     throw $this->createNotFoundException(
+        //         'No product found for id '/$slug
+        //     );
+        // }
+
+
+
+        return $this->render('product/showProductShip.html.twig', [
+            'articles' => $this->articleRepository->findBy(['slug' => $slug]),
         ]);
     }
 }

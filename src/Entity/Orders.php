@@ -53,7 +53,7 @@ class Orders
         return $this->receiptDate;
     }
 
-    public function setReceiptDate(\DateTimeInterface $receiptDate): static
+    public function setReceiptDate(?\DateTimeInterface $receiptDate): static
     {
         $this->receiptDate = $receiptDate;
 
@@ -65,7 +65,7 @@ class Orders
         return $this->totalQty;
     }
 
-    public function setTotalQty(int $totalQty): static
+    public function setTotalQty(?int $totalQty): static
     {
         $this->totalQty = $totalQty;
 
@@ -77,7 +77,7 @@ class Orders
         return $this->totalPrice;
     }
 
-    public function setTotalPrice(float $totalPrice): static
+    public function setTotalPrice(?float $totalPrice): static
     {
         $this->totalPrice = $totalPrice;
 
@@ -89,7 +89,7 @@ class Orders
         return $this->statut;
     }
 
-    public function setStatut(string $statut): static
+    public function setStatut(?string $statut): static
     {
         $this->statut = $statut;
 

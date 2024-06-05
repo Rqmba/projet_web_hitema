@@ -43,13 +43,20 @@ class AdminController extends AbstractController
     }
 
     #[IsGranted('ROLE_USER')]
-    #[Route('/user', name:'admin.shipUser.form', methods:['GET'])]
+    #[Route('/user/ship', name:'admin.shipUser.form', methods:['GET'])]
     public function shipUser():Response
-    {
+    {   
         return $this->render('admin/user/shipUser.html.twig', [
-            'orders' => $this->ordersRepository,
-            'ordersDetails' => $this->ordersDetailsRepository,
-            'articles' => $this->articleRepository,
+            'orders' => $this->ordersRepository->findAll(),
+            'ordersDetails' => $this->ordersDetailsRepository->findAll(),
+            'articles' => $this->articleRepository->findAll(),
         ]);
     }
+
+    // #[IsGranted('ROLE_USER')]
+    // #[Route('/user/ship/{id}', name: 'admin.shipUser.remove')]
+    // public function removeArticle(int $id):Response
+    // {
+    //     $order = $this->articleRepository->find($id);
+    // }
 }

@@ -76,7 +76,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function getOneArticleByClick(string $title):Query
     {
         return $this->createQueryBuilder('article')
-        ->select('article.title, article.picture, article.description, article.price, article.statut, category.name as categoryName')
+        ->select('article.id, article.title, article.picture, article.description, article.price, article.statut, category.name as categoryName')
         ->leftJoin('article.category', 'category')
         ->where('article.title = :title')
         ->setParameter('title', $title)
@@ -89,18 +89,18 @@ class ArticleRepository extends ServiceEntityRepository
         ->select('article')
         ->leftJoin('article.manga', 'manga')
         ->where('manga.name = :name')
-        ->setParameter('manga', $manga)
+        ->setParameter('name', $manga)
         ->getQuery();
     }
 
     public function findArticleBySearch(string $query): array
     {
-        return $this->createQueryBuilder('article')
-        // ->leftJoin('article.manga', 'manga')
+        return $this->createQueryBuilder('article, category.name as categoryName')
+        ->leftJoin('article.category', 'category')
+        ->addSelect('category')
         ->where('article.title LIKE :query')
-        // ->andWhere('manga.name =name')
         ->orWhere('article.description LIKE :query')
-        ->setParameter('article', '%' . $query . '%')
+        ->setParameter('query', '%' . $query . '%')
         ->getQuery()
         ->getResult();
     }

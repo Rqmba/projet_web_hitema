@@ -37,7 +37,7 @@ class OrdersDetails
         return $this->qty;
     }
 
-    public function setQty(int $qty): static
+    public function setQty(?int $qty): static
     {
         $this->qty = $qty;
 
@@ -49,7 +49,7 @@ class OrdersDetails
         return $this->price;
     }
 
-    public function setPrice(float $price): static
+    public function setPrice(?float $price): static
     {
         $this->price = $price;
 

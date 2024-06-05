@@ -71,7 +71,7 @@ class Article
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    public function setTitle(?string $title): static
     {
         $this->title = $title;
 
@@ -83,7 +83,7 @@ class Article
         return $this->slug;
     }
 
-    public function setSlug(string $slug): static
+    public function setSlug(?string $slug): static
     {
         $this->slug = $slug;
 
@@ -95,7 +95,7 @@ class Article
         return $this->picture;
     }
 
-    public function setPicture(string $picture): static
+    public function setPicture(?string $picture): static
     {
         $this->picture = $picture;
 
@@ -107,7 +107,7 @@ class Article
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(?string $description): static
     {
         $this->description = $description;
 
@@ -119,7 +119,7 @@ class Article
         return $this->price;
     }
 
-    public function setPrice(float $price): static
+    public function setPrice(?float $price): static
     {
         $this->price = $price;
 
@@ -131,7 +131,7 @@ class Article
         return $this->quantityinStock;
     }
 
-    public function setQuantityinStock(int $quantityinStock): static
+    public function setQuantityinStock(?int $quantityinStock): static
     {
         $this->quantityinStock = $quantityinStock;
 
@@ -143,7 +143,7 @@ class Article
         return $this->releaseDate;
     }
 
-    public function setReleaseDate(\DateTimeInterface $releaseDate): static
+    public function setReleaseDate(?\DateTimeInterface $releaseDate): static
     {
         $this->releaseDate = $releaseDate;
 
@@ -155,7 +155,7 @@ class Article
         return $this->statut;
     }
 
-    public function setStatut(bool $statut): static
+    public function setStatut(?bool $statut): static
     {
         $this->statut = $statut;
 
