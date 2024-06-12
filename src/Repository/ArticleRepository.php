@@ -95,9 +95,9 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function findArticleBySearch(string $query): array
     {
-        return $this->createQueryBuilder('article, category.name as categoryName')
-        ->leftJoin('article.category', 'category')
-        ->addSelect('category')
+        return $this->createQueryBuilder('article')
+        // ->leftJoin('article.category', 'category')
+        // ->addSelect('category')
         ->where('article.title LIKE :query')
         ->orWhere('article.description LIKE :query')
         ->setParameter('query', '%' . $query . '%')

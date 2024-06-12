@@ -1,35 +1,33 @@
 {% extends "base.html.twig" %}
-{% block title %}{{parent()}} -Page d'acceuil{% endblock %}
-        {% block javascripts %}
-        <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
-        <script src="{{ asset('js/script.js')}}" defer></script>
-        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
-        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
-        {% endblock %}
+{% block title %}{{ parent() }} - Page d'accueil{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>
+<script src="{{ asset('js/script.js') }}" defer></script>
+{% endblock %}
 {% block body %}
 <main>
-<section class="container_oneproduct">
-<article class= "product_container_oneproduct">
-{% for article in articles %}
-<article class="img_oneproduct">
-    <img class="img_product_one" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
-</article>
-
-<article class="product_container_item">
-    <h3 class="product_container_item">{{ article.title }}</h3>
-    <p class="product_container_item">Prix : {{article.price | format_currency('EUR', locale='fr')}}</p>
-    <p class="product_container_item">Description : {{article.description}}</p>
-        {% if article.statut == 1 %}
-        <p class="product_container_item text-success">En stock</p>
-    {% elseif article.statut == 0 %}
-        <p class="product_container_item text-danger">Rupture de stock</p>
-    {% else %}
-        <p class="product_container_item">Quantité : {{ article.statut }}</p>
-    {% endif %}
-    <a class="product_container_item" href="{{url('cart.index', {'id': article.id})}}">Ajouter au panier</a>
-</article>
-{% endfor %}
-</article>
-</section>
+    <section class="container_oneproduct">
+        <article class="product_container_oneproduct">
+            {% for article in articles %}
+            <article class="img_oneproduct">
+            <img class="img_product_one" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
+            </article>
+            <article class="product_container_item">
+                <h3 class="product_container_item">{{ article.title }}</h3>
+                <p class="product_container_item">Prix : {{ article.price | format_currency('EUR', locale='fr') }}</p>
+                <p class="product_container_item">Description : {{ article.description }}</p>
+                {% if article.statut == 1 %}
+                    <p class="product_container_item text-success">En stock</p>
+                    <a class="product_container_item" href="{{ url('cart.index', {'id': article.id}) }}">Ajouter au panier</a>
+                {% elseif article.statut == 0 %}
+                    <p class="product_container_item text-danger">Rupture de stock</p>
+                {% else %}
+                    <p class="product_container_item">Quantité : {{ article.statut }}</p>
+                    <a class="product_container_item" href="{{ url('cart.index', {'id': article.id}) }}">Ajouter au panier</a>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </article>
+    </section>
 </main>
 {% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h2>Article Administration</h2>
+
+                {% include "_inc/notice.html.twig" %}
+                <p>
+                    <a href="{{ url('admin.article.form') }}" class="btn btn-info">Add</a>
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="w-25">Image</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Quantity in Stock</th>
+                                <th>Release Date</th>
+                                <th>Status</th>
+                                <th>Manga</th>
+                                <th>Category</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for article in articles %}
+                                <tr>
+                                    <td><img src="#" class="img-fluid" alt="Article Image"></td>
+                                    <td>{{ article.title }}</td>
+                                    <td>{{ article.description }}</td>
+                                    <td>{{ article.price | format_currency('EUR', locale='fr') }}</td>
+                                    <td>{{ article.quantityinStock }}</td>
+                                    <td>{{ article.releaseDate ? article.releaseDate|date('Y/m/d') : '' }}</td>
+                                    <td>{{ article.statut ? 'In stock' : 'Out of stock' }}</td>
+                                    <td>{{ article.manga.id }}</td>
+                                    <td>{{ article.category.id }}</td>
+                                    <td>
+                                        <a href="{{ url('admin.article.form.update', { id: article.id} ) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ url('admin.article.form.remove', { id: article.id} ) }}" class="btn btn-danger">Remove</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

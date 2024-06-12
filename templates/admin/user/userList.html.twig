@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<main>
+    <div class="row">
+        <div class="col">
+            <h2>User Administration</h2>
+
+            {% include "_inc/notice.html.twig" %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Birthday</th>
+                        <th>Address</th>
+                        <th>Zip Code</th>
+                        <th>City</th>
+                        <th>Country</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.firstname }}</td>
+                            <td>{{ user.birthday ? user.birthday|date('Y/m/d') : '' }}</td>
+                            <td>{{ user.adresse }}</td>
+                            <td>{{ user.zipCode }}</td>
+                            <td>{{ user.city }}</td>
+                            <td>{{ user.country }}</td>
+                            <td>{{ user.createdAt ? user.createdAt|date('Y/m/d H:i:s') : '' }}</td>
+                            <td>
+                                {# <a href="{{ url('admin.article.form.update', { id: user.id} ) }}" class="btn btn-warning">Edit</a> #}
+                                <a href="{{ url('admin.user.form.remove', { id: user.id} ) }}" class="btn btn-danger">Remove</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+{% endblock %}

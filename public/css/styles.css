@@ -63,6 +63,38 @@ h3 {
     align-items: flex-end;
 }
 
+/* Barre de recherche */
+
+/* .search-results-container {
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+}
+
+.search-results-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-result-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-result-item a {
+    display: block;
+    font-weight: bold;
+    color: blue;
+    text-decoration: none;
+}
+
+.search-result-item a:hover {
+    text-decoration: underline;
+} */
+
 /* Header, FAQ, burger */
 .menu1 {
     height: 3rem;

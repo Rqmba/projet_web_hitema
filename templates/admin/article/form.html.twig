@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{# {% form_theme form 'bootstrap_5_layout.html.twig' %} #}
+
+{% block body %}
+<main>
+<h2>Article Form Administration</h2>
+
+{{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
+    <div>
+        {{ form_label(form.title, 'Title : ') }}
+        {{ form_widget(form.title, { attr: { placeholder: 'Title...' } }) }}
+        {{ form_errors(form.title) }}
+    </div>
+    <div>
+        {{ form_label(form.picture, 'Picture URL : ') }}
+        {{ form_widget(form.picture) }}
+        {{ form_errors(form.picture) }}
+    </div>
+    <div>
+        {{ form_label(form.description, 'Description : ') }}
+        {{ form_widget(form.description, { attr: { placeholder: 'Description...' } }) }}
+        {{ form_errors(form.description) }}
+    </div>
+    <div>
+        {{ form_label(form.price, 'Price : ') }}
+        {{ form_widget(form.price, { attr: { placeholder: 'Prix...' } }) }}
+        {{ form_errors(form.price) }}
+    </div>
+    <div>
+        {{ form_label(form.quantityinStock, 'Quantity in Stock : ') }}
+        {{ form_widget(form.quantityinStock) }}
+        {{ form_errors(form.quantityinStock) }}
+    </div>
+    <div>
+        {{ form_label(form.releaseDate, 'Release Date : ') }}
+        {{ form_widget(form.releaseDate) }}
+        {{ form_errors(form.releaseDate) }}
+    </div>
+    <div>
+        {{ form_label(form.statut, 'Status : ') }}
+        {{ form_widget(form.statut) }}
+        {{ form_errors(form.statut) }}
+    </div>
+    <div>
+        {{ form_label(form.manga, 'Manga : ') }}
+        {{ form_widget(form.manga) }}
+        {{ form_errors(form.manga) }}
+    </div>
+    <div>
+        {{ form_label(form.category, 'Category : ') }}
+        {{ form_widget(form.category) }}
+        {{ form_errors(form.category) }}
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+{{ form_end(form) }}
+</main>
+{% endblock %}
+

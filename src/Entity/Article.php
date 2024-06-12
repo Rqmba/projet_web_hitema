@@ -2,15 +2,19 @@
 
 namespace App\Entity;
 
+use AllowDynamicProperties;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[ORM\Index(name : 'article_slug_index', columns: ['slug'])]
 #[ORM\UniqueConstraint(name: 'article_title_slug_unique', columns: ['title', 'slug'])]
+#[AllowDynamicProperties]
 class Article
 {
     #[ORM\Id]
@@ -25,7 +29,7 @@ class Article
     private ?string $slug = null;
 
     #[ORM\Column(length: 80)]
-    private ?string $picture = null;
+    private null|string|UploadedFile $picture = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
@@ -90,12 +94,12 @@ class Article
         return $this;
     }
 
-    public function getPicture(): ?string
+    public function getPicture(): null|string|UploadedFile 
     {
         return $this->picture;
     }
 
-    public function setPicture(?string $picture): static
+    public function setPicture(null|string|UploadedFile  $picture): static
     {
         $this->picture = $picture;
 
@@ -215,5 +219,14 @@ class Article
 
         return $this;
     }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+   public function generateSlug(SluggerInterface $slugger)
+   {
+       if (!$this->slug) {
+           $this->slug = $slugger->slug($this->title)->lower();
+       }
+   }
 }
 

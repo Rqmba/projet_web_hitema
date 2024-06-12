@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<main>
+    <h1>Register</h1>
+    
+    {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
+    
+    <div>
+        {{ form_label(form.email, 'Email : ') }}
+        {{ form_widget(form.email, { attr: { placeholder: 'Email...' } }) }}
+        {{ form_errors(form.email) }}
+    <div>
+        {{ form_label(form.password, 'Password : ') }}
+        {{ form_widget(form.password, { attr: { placeholder: 'Password...' } }) }}
+        {{ form_errors(form.password) }}
+    </div>
+    <div>
+        {{ form_label(form.lastname, 'Last Name : ') }}
+        {{ form_widget(form.lastname, { attr: { placeholder: 'Last Name...' } }) }}
+        {{ form_errors(form.lastname) }}
+    </div>
+    <div>
+        {{ form_label(form.firstname, 'First Name : ') }}
+        {{ form_widget(form.firstname, { attr: { placeholder: 'First Name...' } }) }}
+        {{ form_errors(form.firstname) }}
+    </div>
+    <div>
+        {{ form_label(form.birthday, 'Birthday : ') }}
+        {{ form_widget(form.birthday) }}
+        {{ form_errors(form.birthday) }}
+    </div>
+    <div>
+        {{ form_label(form.adresse, 'Address : ') }}
+        {{ form_widget(form.adresse, { attr: { placeholder: 'Address...' } }) }}
+        {{ form_errors(form.adresse) }}
+    </div>
+    <div>
+        {{ form_label(form.zipCode, 'Zip Code : ') }}
+        {{ form_widget(form.zipCode, { attr: { placeholder: 'Zip Code...' } }) }}
+        {{ form_errors(form.zipCode) }}
+    </div>
+    <div>
+        {{ form_label(form.city, 'City : ') }}
+        {{ form_widget(form.city, { attr: { placeholder: 'City...' } }) }}
+        {{ form_errors(form.city) }}
+    </div>
+    <div>
+        {{ form_label(form.country, 'Country : ') }}
+        {{ form_widget(form.country, { attr: { placeholder: 'Country...' } }) }}
+        {{ form_errors(form.country) }}
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+    
+    {{ form_end(form) }}
+
+</main>
+{% endblock %}

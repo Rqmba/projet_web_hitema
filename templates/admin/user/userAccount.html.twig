@@ -3,8 +3,6 @@
 
 {% block body %}
 <main>
-    <h2>Votre Compte</h2>
-<main>
     <section class="faq_container">
         <article class="menu_filter_faq">
             <ul>
@@ -15,10 +13,11 @@
                 <li><a href="#" class="menu-item" data-target="text_hide5">Polique de retour</a></li>
             </ul>
         </article>
-        
+
+        {# {% for user in users %} #}
         <article class="faq_text">
             <article id="text_hide1" class="hidden">
-                <h3>Le magasin</h3>
+                {# <h3>Bienvenue {{user.lastname}}</h3> #}
                 <p class="content">Shonen Store, c'est aussi le magasin à Orléans et bientot à Tours ! :
                     3 rue du Mont corvo
                     45000 Orléans
@@ -53,13 +52,59 @@
             </article>
 
             <article id="text_hide3" class="hidden">
-                <h3>Quand serai-je livré ?</h3>
-                <p class="content"><a href="{{url('other.livraison')}}"></a></p>
-                <h3>Expédiez-vous dans les drom-com ?</h3>
-                <p class="content">Oui, nous expédions dans les DROM-COM. Les frais de port sont de 30 € pour la Guadeloupe, la Martinique, la Réunion, la Guyane, etc.</p>
-                <p class="content">Pour les livraisons à destination des DROM-COM, le montant total de la commande est le montant hors taxe (HT). Par conséquent, lors de la livraison de la commande, des frais d'octroi de mer et la TVA en vigueur régionalement peuvent vous être demandés, afin de finaliser l'importation des articles achetés.</p>
-                <h3>Livrez-vous à l'étranger ?</h3>
-                <p class="content">Non, nous ne livrons pas à l'étranger, nous livrons qu'en France malheureusement.</p>
+                <h1>Register</h1>
+    
+    {# {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
+    
+    <div>
+        {{ form_label(form.email, 'Email : ') }}
+        {{ form_widget(form.email, { attr: { placeholder: 'Email...' } }) }}
+        {{ form_errors(form.email) }}
+    <div>
+        {{ form_label(form.password, 'Password : ') }}
+        {{ form_widget(form.password, { attr: { placeholder: 'Password...' } }) }}
+        {{ form_errors(form.password) }}
+    </div>
+    <div>
+        {{ form_label(form.lastname, 'Last Name : ') }}
+        {{ form_widget(form.lastname, { attr: { placeholder: 'Last Name...' } }) }}
+        {{ form_errors(form.lastname) }}
+    </div>
+    <div>
+        {{ form_label(form.firstname, 'First Name : ') }}
+        {{ form_widget(form.firstname, { attr: { placeholder: 'First Name...' } }) }}
+        {{ form_errors(form.firstname) }}
+    </div>
+    <div>
+        {{ form_label(form.birthday, 'Birthday : ') }}
+        {{ form_widget(form.birthday) }}
+        {{ form_errors(form.birthday) }}
+    </div>
+    <div>
+        {{ form_label(form.adresse, 'Address : ') }}
+        {{ form_widget(form.adresse, { attr: { placeholder: 'Address...' } }) }}
+        {{ form_errors(form.adresse) }}
+    </div>
+    <div>
+        {{ form_label(form.zipCode, 'Zip Code : ') }}
+        {{ form_widget(form.zipCode, { attr: { placeholder: 'Zip Code...' } }) }}
+        {{ form_errors(form.zipCode) }}
+    </div>
+    <div>
+        {{ form_label(form.city, 'City : ') }}
+        {{ form_widget(form.city, { attr: { placeholder: 'City...' } }) }}
+        {{ form_errors(form.city) }}
+    </div>
+    <div>
+        {{ form_label(form.country, 'Country : ') }}
+        {{ form_widget(form.country, { attr: { placeholder: 'Country...' } }) }}
+        {{ form_errors(form.country) }}
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+    
+    {{ form_end(form) }} #}
             </article>
 
             <article id="text_hide4" class="hidden">
@@ -103,10 +148,11 @@
                     de photos de l’article et de ses défauts justifiant de la réalité du défaut de conformité.
                     Le service client validera ensuite votre demande avant de vous proposer la réparation du produit si cela est possible ou un avoir correspondant au montant payé à l’origine pour cet article afin que vous puissiez le remplacer.
                 </p>
-            </article>
+            </article> 
         </article>
+  
     </section>
-</main>
+{# {% endfor %}  #}
 </main>
 
 {% endblock %}

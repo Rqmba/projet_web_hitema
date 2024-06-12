@@ -19,8 +19,8 @@ class SearchController extends AbstractController
     #[Route('/search', name:'search.index')]
     public function search(Request $request, ArticleRepository $articleRepository): JsonResponse
     {
+        // return new JsonResponse('');
         $query = $request->query->get('query', '');
-
         if ($query) { 
             $article = $articleRepository->findArticleBySearch($query);
         } else {
@@ -36,7 +36,7 @@ class SearchController extends AbstractController
                 'slug' => $articles->getSlug(),
                 'description' => $articles->getDescription(),
                 'picture' => $articles->getPicture(),
-                'categoryName' => $articles->getCategory()->getName(),
+                // 'categoryName' => $articles->getCategory()->getName(),
                 'price' => $articles->getPrice(),
 
             ];

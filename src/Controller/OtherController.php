@@ -24,30 +24,30 @@ class OtherController extends AbstractController
         $this->request = $requestStack->getCurrentRequest();
     }
 
-    #[Route('/other/register', name:'other.register')]
-    public function otherRegister():Response
-    {
-        $type = UserType::class;
-        $model = new User();
+    // #[Route('/other/register', name:'other.register')]
+    // public function otherRegister():Response
+    // {
+    //     $type = UserType::class;
+    //     $model = new User();
 
-        $form = $this->createForm($type, $model);
-        $form->handleRequest($this->request);
+    //     $form = $this->createForm($type, $model);
+    //     $form->handleRequest($this->request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // dd($model);
-            $this->entityManager->persist($model);
-            $this->entityManager->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         // dd($model);
+    //         $this->entityManager->persist($model);
+    //         $this->entityManager->flush();
 
-            $notice = "Connexion réussi";
-            $this->addFlash('notice', $notice);
+    //         $notice = "Connexion réussi";
+    //         $this->addFlash('notice', $notice);
 
-            return $this->redirectToRoute('admin.index.form');
-        }
+    //         return $this->redirectToRoute('admin.index.form');
+    //     }
 
-        return $this->render('other/register.html.twig', [
-            'form' => $form,
-        ]);
-    }
+    //     return $this->render('other/register.html.twig', [
+    //         'form' => $form,
+    //     ]);
+    // }
 
     #[Route('/other/faq', name:'other.faq', methods: ['GET'])]
     public function otherFaq():Response
