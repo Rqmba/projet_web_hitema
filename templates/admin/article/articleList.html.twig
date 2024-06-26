@@ -30,18 +30,22 @@
                         <tbody>
                             {% for article in articles %}
                                 <tr>
-                                    <td><img src="#" class="img-fluid" alt="Article Image"></td>
+                                    <td><img class="imgproduct" src="{{ asset('img/' ~ article.picture ) }}" alt="{{article.description}}"></td>
                                     <td>{{ article.title }}</td>
                                     <td>{{ article.description }}</td>
                                     <td>{{ article.price | format_currency('EUR', locale='fr') }}</td>
                                     <td>{{ article.quantityinStock }}</td>
                                     <td>{{ article.releaseDate ? article.releaseDate|date('Y/m/d') : '' }}</td>
                                     <td>{{ article.statut ? 'In stock' : 'Out of stock' }}</td>
-                                    <td>{{ article.manga.id }}</td>
-                                    <td>{{ article.category.id }}</td>
+                                    <td>{{ article.manga.name }}</td>
+                                    <td>{{ article.category.name }}</td>
                                     <td>
-                                        <a href="{{ url('admin.article.form.update', { id: article.id} ) }}" class="btn btn-warning">Edit</a>
-                                        <a href="{{ url('admin.article.form.remove', { id: article.id} ) }}" class="btn btn-danger">Remove</a>
+                                        {% if article.deletedAt %}
+                                            <a href="{{ url('admin.article.form.restore', { id: article.id }) }}" class="btn btn-success">Remettre en stock</a>
+                                        {% else %}
+                                            <a href="{{ url('admin.article.form.update', { id: article.id }) }}" class="btn btn-warning">Editer</a>
+                                            <a href="{{ url('admin.article.form.remove', { id: article.id }) }}" class="btn btn-danger">Supprimer</a>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}

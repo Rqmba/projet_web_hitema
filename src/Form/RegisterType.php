@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
@@ -19,7 +20,16 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter an email address',
+                    ]),
+                    new Email([
+                        'message' => 'Please enter a valid email address',
+                    ]),
+                ],
+            ])
             // ->add('roles')
             ->add('password', PasswordType::class, [
                 'mapped' => false,
@@ -30,7 +40,7 @@ class RegisterType extends AbstractType
                     new Length([
                         'min' => 8,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        'max' => 4096,
+                        'max' => 60,
                     ]),
                     new Regex([
                         'pattern' => '/^(?=.*[A-Z])(?=.*[\W_]).+$/',
@@ -54,6 +64,7 @@ class RegisterType extends AbstractType
             ])
             ->add('birthday', DateType::class, [
                 'widget' => 'single_text',
+                'empty_data' => null,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter your birthday',
@@ -88,15 +99,15 @@ class RegisterType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('createdAt', DateType::class, [
-                'empty_data' => null,
-                'widget' => 'single_text',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter the creation date',
-                    ]),
-                ],
-            ])
+            // ->add('createdAt', DateType::class, [
+            //     'empty_data' => null,
+            //     'widget' => 'single_text',
+            //     'constraints' => [
+            //         new NotBlank([
+            //             'message' => 'Please enter the creation date',
+            //         ]),
+            //     ],
+            // ])
         ;
     }
 

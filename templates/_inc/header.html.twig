@@ -1,104 +1,107 @@
-{% block javascripts %}
-    <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
-    <script src="{{ asset('js/scriptSearchbar.js')}}" defer></script>
-{% endblock %}
+         {% block javascripts %}
+        <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
+        <script src="{{ asset('js/scriptSearchbar.js')}}" defer></script>
+        {% endblock %}
+ <header>
+        <section class="Banniere"><h1>Shonen world</h1></section>
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-success">
+    <article class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <article class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url('homepage.index') }}" style="font-weight: bold; color: blue;">Acceuil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('other.faq') }}" style="font-weight: bold; color: blue;">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('other.news') }}" style="font-weight: bold; color: blue;">News</a>
+                </li>
+            </ul>
+        </article>
 
-<header>
-    <section class="Banniere"><h1>Shonen world</h1></section>
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-success">
-        <article class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <article class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <article class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url('homepage.index') }}" style="font-weight: bold; color: blue;">Acceuil</a>
+                        <a class="nav-link" href="{{ url('admin.article.list') }}" style="font-weight: bold; color: blue;">Tous les produits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('other.faq') }}" style="font-weight: bold; color: blue;">FAQ</a>
+                        <a class="nav-link" href="{{ url('admin.article.form') }}" style="font-weight: bold; color: blue;">Ajoutez un produit</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('other.news') }}" style="font-weight: bold; color: blue;">News</a>
+                        <a class="nav-link" href="{{ url('admin.user.list') }}" style="font-weight: bold; color: blue;">Tous les utilisateurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('admin.category.form') }}" style="font-weight: bold; color: blue;">Ajoutez une categorie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('admin.category.list') }}" style="font-weight: bold; color: blue;">Liste de categorie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('admin.manga.list') }}" style="font-weight: bold; color: blue;">Liste de mangas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('admin.manga.form') }}" style="font-weight: bold; color: blue;">Ajoutez un manga</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('admin.orders.list') }}" style="font-weight: bold; color: blue;">Liste des commandes</a>
                     </li>
                 </ul>
-            </article>
+            {% else %}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('product.index') }}" style="font-weight: bold; color: blue;">Tous nos produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('product.vetements') }}" style="font-weight: bold; color: blue;">Vetements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('product.goodies') }}" style="font-weight: bold; color: blue;">Goodies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('product.figurines') }}" style="font-weight: bold; color: blue;">Figurines</a>
+                    </li>
+                </ul>
+            {% endif %}
 
-            <article class="collapse navbar-collapse" id="navbarSupportedContent">
-                {% if is_granted('ROLE_SUPER_ADMIN') %}
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin.article.list') }}" style="font-weight: bold; color: blue;">Tous les produits</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin.article.form') }}" style="font-weight: bold; color: blue;">Ajoutez un produit</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin.user.list') }}" style="font-weight: bold; color: blue;">Tous les utilisateurs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin.category.form') }}" style="font-weight: bold; color: blue;">Ajoutez une categorie</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin.category.list') }}" style="font-weight: bold; color: blue;">Liste de categorie</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin.manga.list') }}" style="font-weight: bold; color: blue;">Liste de mangas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin.manga.form') }}" style="font-weight: bold; color: blue;">Ajoutez un manga</a>
-                        </li>
-                    </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('admin.userAccount.form') }}" style="font-weight: bold; color: blue;">Mon Compte</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('admin.shipUser.form') }}" style="font-weight: bold; color: blue;">Mon panier</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('security.logout') }}" style="font-weight: bold; color: blue;">Se déconnecter</a>
+                    </li>
                 {% else %}
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('product.index') }}" style="font-weight: bold; color: blue;">Tous nos produits</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('product.vetements') }}" style="font-weight: bold; color: blue;">Vetements</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('product.goodies') }}" style="font-weight: bold; color: blue;">Goodies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('product.figurines') }}" style="font-weight: bold; color: blue;">Figurines</a>
-                        </li>
-                    </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('security.register') }}" style="font-weight: bold; color: blue;">Inscrivez-vous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('security.login') }}" style="font-weight: bold; color: blue;">Se connecter</a>
+                    </li>
                 {% endif %}
-
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin.userAccount.form') }}" style="font-weight: bold; color: blue;">Mon Compte</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin.shipUser.form') }}" style="font-weight: bold; color: blue;">Mon panier</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('security.logout') }}" style="font-weight: bold; color: blue;">Se déconnecter</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('security.register') }}" style="font-weight: bold; color: blue;">Inscrivez-vous</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('security.login') }}" style="font-weight: bold; color: blue;">Se connecter</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </article>
-
-            <form id="headerSearchForm" class="d-flex" role="search">
-                <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit" style="opacity: 1;">Search</button>
-            </form>
-            <div class="search-results-container">
-                <ul id="search-results"></ul>
-            </div>
+            </ul>
         </article>
-    </nav>
+
+        <form id="headerSearchForm" class="d-flex" role="search">
+            <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+            {# <button class="btn btn-outline-success" type="submit" style="opacity: 1;">Search</button> #}
+        <div class="search-results-container">
+            <ul id="search-results"></ul>
+        </div>
+        </form>
+    </article>
+</nav>
+
 </header>
+
 

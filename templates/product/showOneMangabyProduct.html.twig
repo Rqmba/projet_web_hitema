@@ -3,14 +3,12 @@
         {% block javascripts %}
         <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
         <script src="{{ asset('js/script.js')}}" defer></script>
-        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
-        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
         {% endblock %}
 {% block body %}
     <article class="product-container">
         {% for article in articles %}
             <article class="product-item">
-                <img class="imgproduct" src="{{ asset('img/Figurine/' ~ article.picture) }}" alt="{{ article.description }}">
+                <img class="imgproduct" src="{{ asset('img/' ~ article.picture) }}" alt="{{ article.description }}">
                 <article class="priceJs" data-redirect-url="{{ url('manga.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>
                 <h3 class="product-item">{{ article.title }}</h3>
             </article>

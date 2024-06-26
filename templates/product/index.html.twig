@@ -3,14 +3,12 @@
         {% block javascripts %}
         <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
         <script src="{{ asset('js/script.js')}}" defer></script>
-        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
-        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
         {% endblock %}
 {% block body %}
 <main>
     <section class="products-and-filters">
         <article class="menu_filter">
-            <h3>Tous nos produits</h3>
+            <h2>Tous nos produits</h2>
             {% for manga in Mangas %}
             <ul>
             <li><a href="#">{{manga.name}}</a></li>
@@ -21,7 +19,7 @@
         <article class= "product-container">
             {% for article in allArticles %}
             <article class="product-item">
-            <img class="imgproduct" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
+            <img class="imgproduct" src="{{ asset('img/' ~ article.picture) }}" alt="{{ article.description }}">
             <article class="priceJs" data-redirect-url="{{ url('product.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>
             <h3 class="product-item">{{ article.title }}</h3>
     </article>

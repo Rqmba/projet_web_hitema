@@ -3,8 +3,6 @@
         {% block javascripts %}
         <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
         <script src="{{ asset('js/script.js')}}" defer></script>
-        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
-        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
         {% endblock %}
 {% block body %}
 
@@ -12,25 +10,22 @@
 <section>
     <article class="d-flex">
         <img class="p-2 w-100" src="{{ asset('img/Autres/2022-medaille-or-meilleure-livraison-by-colisconsult.png') }}" alt="">
-        <figcaption class="d-flex align-items-center">Shonen Store a été distingué Meilleure livraison e-commerce 2022. En effet, shonen store, est arrivé 1er de sa catégorie « Animation ».</figcaption>   
+        <figcaption class="d-flex align-items-center"><p>Shonen Store a été distingué Meilleure livraison e-commerce 2022. En effet, shonen store, est arrivé 1er de sa catégorie « Animation ».</p></figcaption>   
     </article>
 
-    <article>
+    <article class="textformate">
         <h3>DEMAIN CHEZ VOUS AVEC LA LIVRAISON EXPRESS VIA CHRONOPOST</h3>
-            <li>
-                <strong>Commandez avant 15h du lundi au jeudi :</strong>
-                Pour une livraison le lendemain avant 18h, en point relais ou à domicile.
-            </li>
-            <li>
-                <strong>Commandez entre jeudi 15h et vendredi 15h :</strong>
-                Recevez votre commande chez vous ou en point relais samedi avec l'option <span class="fw-bold">"Livrez-moi le samedi"</span> (supplément 5,50 €).
-            </li>
-            <li>
-                <strong>Commandes passées du vendredi 15h au lundi 15h :</strong>
-                Expédiées le lundi, pour une livraison le mardi.
-            </li>
 
-    <p class="mt-3"><span class="fw-bold">Livraison Express en Point relais ou à domicile ?</span> Nous vous conseillons d'opter pour la livraison en point relais. Il se peut toujours qu'un livreur en retard dans sa tournée ne prenne pas le temps de sonner à votre domicile et reprogramme la livraison au lendemain.</p>
+                <p>Commandez avant 15h du lundi au jeudi :</p>
+                <p>Pour une livraison le lendemain avant 18h, en point relais ou à domicile.</p>
+
+                <p>Commandez entre jeudi 15h et vendredi 15h :</p>
+                <p>Recevez votre commande chez vous ou en point relais samedi avec l'option <span class="fw-bold">"Livrez-moi le samedi"</span> (supplément 5,50 €).</p>
+
+                <p>Commandes passées du vendredi 15h au lundi 15h :</p>
+                <p>Expédiées le lundi, pour une livraison le mardi.</p>
+
+    <p><span class="fw-bold">Livraison Express en Point relais ou à domicile ?</span> Nous vous conseillons d'opter pour la livraison en point relais. Il se peut toujours qu'un livreur en retard dans sa tournée ne prenne pas le temps de sonner à votre domicile et reprogramme la livraison au lendemain.</p>
 
     </article>
 

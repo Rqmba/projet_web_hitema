@@ -30,7 +30,7 @@ class ArticleListener
         $entity = $event->getObject();
 
         if ($entity instanceof Article) {
-            $entity->prevPicture= $entity->getPicture();
+            $entity->prevImage= $entity->getPicture();
             // dd($entity);
         }
     }
@@ -47,7 +47,7 @@ class ArticleListener
         if ($entity->getPicture() instanceof UploadedFile) {
             $uploadedFile = $entity->getPicture();
 
-            $fileName = ByteString::fromRandom(32)->lower() . '.' . $uploadedFile->guessExtension();
+            $fileName = ByteString::fromRandom(32)->lower() . ".{$uploadedFile->guessExtension()}";
 
             $uploadedFile->move('img', $fileName);
 
@@ -71,13 +71,13 @@ class ArticleListener
             );
 
             $uploadedFile = $entity->getPicture();
-            $fileName = ByteString::fromRandom(32)->lower() . ".
-        {$uploadedFile->guessExtension()}";
+            $fileName = ByteString::fromRandom(32)->lower() . ".{$uploadedFile->guessExtension()}";
         $uploadedFile->move('img', $fileName);
 
         $entity->setPicture($fileName);
         return;
         }
+        $entity->setPicture($entity->prevImage);
         }
     }
 

@@ -10,7 +10,7 @@
         <article class="product_container_oneproduct">
             {% for article in articles %}
             <article class="img_oneproduct">
-            <img class="img_product_one" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
+            <img class="img_product_one" src="{{ asset('img/' ~ article.picture) }}" alt="{{ article.description }}">
             </article>
             <article class="product_container_item">
                 <h3 class="product_container_item">{{ article.title }}</h3>

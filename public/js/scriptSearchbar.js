@@ -2,15 +2,20 @@ document.getElementById('headerSearchForm').addEventListener('keyup', function(e
     e.preventDefault();
     const query = document.querySelector('#headerSearchForm input[name="query"]').value;
     const resultsContainer = document.getElementById('search-results');    
-    resultsContainer.innerHTML= '';
+    resultsContainer.innerHTML = '';
     
-    if (query.trim() !== '') {
-         fetch('/search?query=' + encodeURIComponent(query))
-        // fetch(`/search?query=${query}`)
+    if (query.trim().length >= 4) {
+        fetch('/search?query=' + encodeURIComponent(query))
             .then(response => response.json())
             .then(data => display(data));
     } else {
-        resultsContainer.innerHTML = 'Aucun résultat trouvé.';
+        // Masquer le conteneur des résultats si le champ de recherche est vide
+        if (query.trim().length === 0) {
+            document.querySelector('.search-results-container').style.display = 'none';
+        } else {
+            resultsContainer.innerHTML = 'Aucun résultat trouvé.';
+            document.querySelector('.search-results-container').style.display = 'block';
+        }
     }
 });
 
@@ -22,18 +27,19 @@ function display(data) {
             const title = item.title;
             const description = item.description;
             const picture = item.picture;
-            // const category = item.categoryName;
             const price = item.price;
             const slug = item.slug;
 
             resultsContainer.innerHTML += `
                 <li class="search-result-item">
-                    <img class="img_product_one" src="/img/${picture}" alt="${description}">
+                    <img class="imgproduct" src="/img/${picture}" alt="${description}">
                     <a href="/product/user/${slug}">${title}</a>
                     <p>${price} €</p>
                 </li>
             `;
         });
+        // Afficher le conteneur des résultats
+        document.querySelector('.search-results-container').style.display = 'block';
     } else {
         resultsContainer.innerHTML = 'Aucun résultat trouvé.';
     }

@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -28,16 +29,16 @@ class ArticleController extends AbstractController
         $this->request = $requestStack->getCurrentRequest();
     }
 
-    // #[IsGranted('ROLE_SUPER_ADMIN')]
     #[Route('/list', name:'admin.article.list')]
     public function articleList(): Response
     {
         return $this->render('admin/article/articleList.html.twig', [
             'articles' => $this->articleRepository->findAll(),
+            // dd($this->articleRepository->findAll()),
         ]);
+        
     }
-
-    // #[IsGranted('ROLE_SUPER_ADMIN')]
+    
     #[Route('/form', name: 'admin.article.form')]
     #[Route('/form/update/{id}', name: 'admin.article.form.update')]
     public function form(?int $id = null): Response
@@ -66,16 +67,31 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    // #[IsGranted('ROLE_SUPER_ADMIN')]
     #[Route('/form/remove/{id}', name: 'admin.article.form.remove')]
     public function remove(int $id): Response
     {
         $model = $this->articleRepository->find($id);
 
         if ($model) {
-            $this->entityManager->remove($model);
+            $model->setDeletedAt(new DateTime());
             $this->entityManager->flush();
             $this->addFlash('notice', 'Article removed');
+        } else {
+            $this->addFlash('error', 'Article not found');
+        }
+
+        return $this->redirectToRoute('admin.article.list');
+    }
+
+    #[Route('/restore/{id}', name: 'admin.article.form.restore')]
+    public function restore(int $id): Response
+    {
+        $model = $this->articleRepository->find($id);
+
+        if ($model) {
+            $model->setDeletedAt(null);
+            $this->entityManager->flush();
+            $this->addFlash('notice', 'Article restored');
         } else {
             $this->addFlash('error', 'Article not found');
         }

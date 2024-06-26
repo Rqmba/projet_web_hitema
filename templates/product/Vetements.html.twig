@@ -2,14 +2,12 @@
 {% block title %}{{ parent() }} - Page des Vetements{% endblock %}        {% block javascripts %}
         <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
         <script src="{{ asset('js/script.js')}}" defer></script>
-        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
-        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
         {% endblock %}
 {% block body %}
 <main>
     <section class="products-and-filters">
         <article class="menu_filter">
-            <h3>Nos Vetements</h3>
+            <h2>Nos Vetements</h2>
             <ul>
                 {% for manga in Mangas %}
                 <li><a href="#">{{ manga.name }}</a></li>
@@ -20,7 +18,7 @@
         <article class="product-container">
             {% for vetement in Vetements %}
             <article class="product-item">
-                <img class="imgproduct" src="{{ asset('img/Vetements/' ~ vetement.picture) }}" alt="{{ vetement.description }}">
+                <img class="imgproduct" src="{{ asset('img/' ~ vetement.picture) }}" alt="{{ vetement.description }}">
                 <article class="priceJs" data-redirect-url="{{ url('product.show', {'slug': vetement.title}) }}">{{ vetement.price | format_currency('EUR', locale='fr')}}</article>
                 <h3 class="product-item">{{ vetement.title }}</h3>
             </article>

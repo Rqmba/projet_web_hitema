@@ -4,42 +4,41 @@
         <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
         <script src="{{ asset('js/script.js')}}" defer></script>
         <script src="{{ asset('js/scriptIndex.js')}}" defer></script>
-        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
         {% endblock %}
 {% block body %}
 <main>
         <section class="carousel">
             <article class="slides">
 
-                <article class="slide">
+                <article class="slide" id="slide1_content">
                     <figure>
-                        <img class="img_slide" src="{{ asset('img/Goodie/epée_rengoku.jpg')}}" alt="Photo d'un katana du manga demon slayer avec le personnage de rengoku kyojuro pour démontrer la promotion">
+                        <img class="img_slide" src="{{ asset('img/epée_rengoku.jpg')}}" alt="Photo d'un katana du manga demon slayer avec le personnage de rengoku kyojuro pour démontrer la promotion">
                     </figure>
                     <figcaption>
-                        <h3>Nouvelle arrivage !</h3>
-                        <h2>De nouveaux katanas démon slayer, notamment ceux de la saison 3 !</h2>
+                        <h2>Nouvelle arrivage !</h2>
+                        <h3>De nouveaux katanas démon slayer, notamment ceux de la saison 3 !</h3>
                             <p>Nouvelle arrivage de katana, les katanas de Demon Slayer ! Incarne ton pourfendeur preferé !</p>
                     </figcaption>
                 </article>
 
-                <article class="slide">
+                <article class="slide" id="slide2_content">
                     <figure>
                         <img class="img_slide" src="{{ asset('img/slidejapanexpo.jpg')}}" alt="Affiche promotionnel de la Japan Expo  démontrant la convention qui se deroulera du 11 au 14 juillet">
                     </figure>
                     <figcaption>
-                        <h3>La Japan Expo 2024 !</h3>
-                        <H2>La Japan Expo 2024, arrive bientot, profitez de la reduction pour les cosplay !</H2>
+                        <h2>La Japan Expo 2024 !</h2>
+                        <h3>La Japan Expo 2024, arrive bientot, profitez de la reduction pour les cosplay !</h3>
                             <p>Promo sur tout les articles cosplay, en vue de la japan expo !</p>
                     </figcaption>
                 </article>
 
-                <article class="slide">
+                <article class="slide" id="slide3_content">
                     <figure>
                         <img class="img_slide" src="{{ asset('img/slidergokuangel.jpg')}}" alt="Poster de sangoku volant vers le paradis avec le kaioshin, en hommage à Akira toriya, l'autheur de Dragon ball">
                     </figure>
                     <figcaption>
-                        <h3>Triste nouvelle...</h3>
-                        <h2>En raison du décès de Mr.toriyama, tout nos articles dragon ball sont en promotion.</h2>
+                        <h2>Triste nouvelle...</h2>
+                        <h3>En raison du décès de Mr.toriyama, tout nos articles dragon ball sont en promotion.</h3>
                             <p>Promos de -50%, sur tout les articles Dragon ball, en hommage à Toriyama-Sensei.</p>
                     </figcaption> 
                     </article>                   
@@ -50,12 +49,12 @@
     <section>
 
       <h2>Nos nouvelles figurines !</h2>
-      <p>Retrouve toutes nos nouvelles figurines</p>
+      <h3>Retrouve toutes nos nouvelles figurines</h3>
 <section class="products-and-filters">
         <article class= "product-container">
             {% for article in articlesAllFigurines %}
             <article class="product-item">
-            <img class="imgproduct" src="{{ asset('img/Figurine/' ~ article.picture) }}" alt="{{ article.title }}">
+            <img class="imgproduct" src="{{ asset('img/' ~ article.picture) }}" alt="{{ article.description }}">
             <article class="priceJs" data-redirect-url="{{ url('product.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>
             <h3 "product-item">{{ article.title }}</h3>
             </article>
@@ -63,13 +62,13 @@
         </article>
         </section>
         
-        <h2>Tous nos articles Dragon ball en promotion !</h2>
-        <p>Retrouve tout nos articles de dragon ball</p>
+        <h2>Tous nos articles Dragon ball !</h2>
+        <h3>Retrouve tout nos articles de dragon ball</h3>
         <section class="products-and-filters">
             <article class= "product-container">
             {% for article in articlesDB %}
                 <article class= "product-item">
-                <img class="imgproduct" src="{{ asset('img/' ~ article.categoryName ~ '/' ~ article.picture) }}" alt="{{ article.description }}">
+                <img class="imgproduct" src="{{ asset('img/' ~ article.picture) }}" alt="{{ article.description }}">
                 <article class="priceJs" data-redirect-url="{{ url('product.show', {'slug': article.title}) }}">{{ article.price | format_currency('EUR', locale='fr')}}</article>                
                 <h3 class="product-item">{{ article.title }}</h3>
                 </article>

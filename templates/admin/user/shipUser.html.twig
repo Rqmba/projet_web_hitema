@@ -3,42 +3,42 @@
 
 {% block body %}
 <main>
-    <h1>Tableau de commandes</h1>
+    <h2>Tableau de commandes</h2>
 {% include "_inc/notice.html.twig" %}
-    <div class="table-responsive">
+    <div class="table-responsive custom-responsive-table">
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Produit</th>
                     <th>Prix</th>
                     <th>Quantité</th>
-                </tr>         
+                    <th>Actions</th>
+                </tr>
             </thead>
             <tbody>
                 {% for orderDetail in ordersDetails %}
                     <tr>
                         <td>
-                            <img class="img_product_one" src="{{ asset('img/' ~ orderDetail.article.title ~  '/' ~ orderDetail.article.picture) }}" alt="{{ orderDetail.article.description }}">
+                            <img class="imgproduct" src="{{ asset('img/' ~ orderDetail.article.picture) }}" alt="{{ orderDetail.article.description }}">
                             {{ orderDetail.article.title }}
                         </td>
                         <td>{{ orderDetail.price | format_currency('EUR', locale='fr') }}</td>
-                        <td>{{ orderDetail.qty }}
+                        <td>{{ orderDetail.qty }}</td>
                         <td>
-                            <a href="{{url('productShip.show', { slug: orderDetail.article.slug })}}" class="btn btn-sm btn-primary">Voir</a>
-                            <a href="{{url('admin.shipUser.remove', { id: orderDetail.id })}}" class="btn btn-sm btn-danger">Supprimer</a>
-                        </td>
+                            <a href="{{ url('productShip.show', { slug: orderDetail.article.slug }) }}" class="btn btn-sm btn-primary">Voir</a>
+                            <a href="{{ url('admin.shipUser.remove', { id: orderDetail.id }) }}" class="btn btn-sm btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
-            <thead>
+            <tfoot>
                 {% for order in orders %}
                     <tr>
-                        <th>Tout vos produits : {{ order.totalQty }}</th>
-                        <th>Prix total : {{ order.totalPrice | format_currency('EUR', locale='fr') }}</th>
+                        <td colspan="2">Tout vos produits : {{ order.totalQty }}</td>
+                        <td colspan="2">Prix total : {{ order.totalPrice | format_currency('EUR', locale='fr') }}</td>
                     </tr>
-                {% endfor %}    
-            </thead>
+                {% endfor %}
+            </tfoot>
         </table>
     </div>
 </main>

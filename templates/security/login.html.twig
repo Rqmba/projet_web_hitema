@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
-
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
 {% block body %}
 <main>
+<h2>Connectez-vous</h2>
     {% if error %}
         <p class="alert alert-danger">{{ error.messageKey}}</p>
     {% endif %}

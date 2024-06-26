@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,45 +38,32 @@ class UserController extends AbstractController
             'users' => $this->userRepository->findAll(),
         ]);
     }
-    // #[IsGranted('ROLE_SUPER_ADMIN')]
-    // #[Route('/user/form', name: 'admin.user.form')]
-    // #[Route('/user/form/update/{id}', name: 'admin.user.form.update')]
-    // public function form(?int $id = null): Response
-    // {
-    //     $type = UserType::class;
-    //     $model = $id ? $this->userRepository->find($id) : new User();
 
-    //     $form = $this->createForm($type, $model);
-    //     $form->handleRequest($this->request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         if (!$id) {
-    //             $slug = $this->sluggerInterface->slug($model->getTitle())->lower();
-    //             $model->setSlug($slug);
-    //         }
-    //         $id ? null : $this->entityManager->persist($model);
-    //         $this->entityManager->flush();
-
-    //         $notice = $id ? 'User Updated' : 'User added';
-    //         $this->addFlash('notice', $notice);
-
-    //         return $this->redirectToRoute('admin.user.list');
-    //     }
-    //     return $this->render('admin/user/form.html.twig', [
-    //         'form' => $form,
-    //     ]);
-    // }
-
-    // #[IsGranted('ROLE_SUPER_ADMIN')]
     #[Route('/form/remove/{id}', name: 'admin.user.form.remove')]
     public function remove(int $id): Response
     {
         $model = $this->userRepository->find($id);
 
         if ($model) {
-            $this->entityManager->remove($model);
+            $model->setDeletedAt(new DateTime());
             $this->entityManager->flush();
             $this->addFlash('notice', 'User removed');
+        } else {
+            $this->addFlash('error', 'User not found');
+        }
+
+        return $this->redirectToRoute('admin.user.list');
+    }
+
+    #[Route('/restore/{id}', name: 'admin.user.form.restore')]
+    public function restore(int $id): Response
+    {
+        $model = $this->userRepository->find($id);
+
+        if ($model) {
+            $model->setDeletedAt(null);
+            $this->entityManager->flush();
+            $this->addFlash('notice', 'User restored');
         } else {
             $this->addFlash('error', 'User not found');
         }

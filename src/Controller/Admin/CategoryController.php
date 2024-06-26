@@ -23,7 +23,6 @@ class CategoryController extends AbstractController
         private RequestStack $requestStack,
         private EntityManagerInterface $entityManager,
         private CategoryRepository $categoryRepository,
-        // private SluggerInterface $sluggerInterface
     ) {
         $this->request = $requestStack->getCurrentRequest();
     }
@@ -37,7 +36,6 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    // #[IsGranted('ROLE_SUPER_ADMIN')]
     #[Route('/form', name: 'admin.category.form')]
     #[Route('/form/update/{id}', name: 'admin.category.form.update')]
     public function form(?int $id = null): Response
@@ -49,10 +47,7 @@ class CategoryController extends AbstractController
         $form->handleRequest($this->request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // if (!$id) {
-            //     $slug = $this->sluggerInterface->slug($model->getName())->lower();
-            //     $model->setSlug($slug);
-            // }
+
             $id ? null : $this->entityManager->persist($model);
             $this->entityManager->flush();
 
@@ -66,7 +61,6 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    // #[IsGranted('ROLE_SUPER_ADMIN')]
     #[Route('/form/remove/{id}', name: 'admin.category.form.remove')]
     public function remove(int $id): Response
     {

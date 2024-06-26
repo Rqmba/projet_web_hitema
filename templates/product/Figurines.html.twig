@@ -1,11 +1,9 @@
 
 {% extends "base.html.twig" %}
-{% block title %}{{parent()}} -Page des <Figurines>{% endblock %}        
+{% block title %}{{parent()}} -Page des Figurines{% endblock %}        
 {% block javascripts %}
         <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
         <script src="{{ asset('js/script.js')}}" defer></script>
-        {# // <script src="{{ asset('js/scriptIndex.js')}}" defer></script> #}
-        {# // <script src="{{ asset('js/scriptFaq.js')}}" defer></script> #}
 {% endblock %}
 {% block body %}
 <main>
@@ -14,7 +12,7 @@
     <section class="products-and-filters">
 
         <article class="menu_filter">
-            <h3>Nos Figurines</h3>
+            <h2>Nos Figurines</h2>
             {% for manga in Mangas %}
             <ul>
             <li><a href="{{ url('manga.show', {'name': manga.name}) }}">{{manga.name}}</a></li>
@@ -25,7 +23,7 @@
         <article class= "product-container">
             {% for figurine in Figurines %}
             <article class="product-item">
-                <img class= "imgproduct" src="{{ asset('img/Figurine/' ~ figurine.picture) }}" alt="{{ figurine.description }}">
+                <img class="imgproduct" src="{{ asset('img/' ~ figurine.picture) }}" alt="{{ figurine.description }}">
                 <article class="priceJs" data-redirect-url="{{ url('product.show', {'slug': figurine.title}) }}">{{ figurine.price | format_currency('EUR', locale='fr')}}</article>
                 <h3 class ="product-item">{{ figurine.title }}</h3>
             </article>

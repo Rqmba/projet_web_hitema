@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<main>
+    <div class="row">
+        <div class="col">
+            <h2>Orders Administration</h2>
+
+            {% include "_inc/notice.html.twig" %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Orders Id</th>
+                        <th>User</th>
+                        <th>receipt_date</th>
+                        <th>total_qty</th>
+                        <th>total_price</th>
+                        <th>statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.user.email}}</td>
+                            <td>{{ order.receiptDate ? order.receiptDate|date('Y/m/d H:i:s') : '' }}</td>
+                            <td>{{ order.totalQty}}</td>
+                            <td>{{ order.totalPrice | format_currency('EUR', locale='fr') }}</td>
+                            <td>{{ order.statut}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+{% endblock %}

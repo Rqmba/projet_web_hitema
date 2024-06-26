@@ -97,15 +97,6 @@ class ProductController extends AbstractController
     #[Route('/product/user/{slug}', name:'productShip.show', methods:['GET'])]
     public function showProductShip(string $slug): Response
     {
-        // $product = $entityManagerInterface->articleRepository(Article::class)->find($slug);
-        // if (!$product) {
-        //     throw $this->createNotFoundException(
-        //         'No product found for id '/$slug
-        //     );
-        // }
-
-
-
         return $this->render('product/showProductShip.html.twig', [
             'articles' => $this->articleRepository->findBy(['slug' => $slug]),
         ]);

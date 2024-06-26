@@ -10,12 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-    // public function __construct(
-    //     readonly private ArticleRepository $articleRepository,
-    // ) 
-    // {
 
-    // }
     #[Route('/search', name:'search.index')]
     public function search(Request $request, ArticleRepository $articleRepository): JsonResponse
     {
@@ -36,7 +31,6 @@ class SearchController extends AbstractController
                 'slug' => $articles->getSlug(),
                 'description' => $articles->getDescription(),
                 'picture' => $articles->getPicture(),
-                // 'categoryName' => $articles->getCategory()->getName(),
                 'price' => $articles->getPrice(),
 
             ];

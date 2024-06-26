@@ -1,5 +1,7 @@
-{% extends "base.html.twig" %}
-{% block title %}{{parent()}} -Vos commandes{% endblock %}
+{# templates/admin/user/userAccount.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Vos commandes{% endblock %}
 
 {% block body %}
 <main>
@@ -7,152 +9,133 @@
         <article class="menu_filter_faq">
             <ul>
                 <li><a href="#" class="menu-item" data-target="text_hide1">Mon Compte</a></li>
-                <li><a href="#" class="menu-item" data-target="text_hide2">Mes Commandes </a></li>
+                <li><a href="#" class="menu-item" data-target="text_hide2">Mes Commandes</a></li>
                 <li><a href="#" class="menu-item" data-target="text_hide3">Mes Informations Personnelles</a></li>
                 <li><a href="#" class="menu-item" data-target="text_hide4">Mes Retours</a></li>
-                <li><a href="#" class="menu-item" data-target="text_hide5">Polique de retour</a></li>
+                <li><a href="#" class="menu-item" data-target="text_hide5">Politique de retour</a></li>
             </ul>
         </article>
 
-        {# {% for user in users %} #}
-        <article class="faq_text">
-            <article id="text_hide1" class="hidden">
-                {# <h3>Bienvenue {{user.lastname}}</h3> #}
-                <p class="content">Shonen Store, c'est aussi le magasin à Orléans et bientot à Tours ! :
-                    3 rue du Mont corvo
-                    45000 Orléans
-                    Besoin d'information ? : 
-                    contact@shonen-world.com
-                    02 38 42 24 42
-                </p>
-                <h3>Est-il possible de payer en plusieurs fois ?</h3>
-                <p class="content">Oui, deux options existent pour régler vos achats en plusieurs fois :
-                    Alma, solution de paiements en 2, 3 ou 4 fois. Des frais s'ajoutent alors au montant de la commande. Plus le nombre de mensualités est réduit, moins les frais seront importants.
-                    PayPal 4X sans frais, qui vous permet d'étaler votre paiement en 4 fois, sans frais supplémentaires.
-                    Au moment du paiement, PayPal et Alma vérifient votre éligibilité au paiement en plusieurs fois. Il se peut que cette option vous soit finalement refusée sans que nous puissions intervenir.
-                    Un crédit est un engagement contraignant et doit être remboursé, vérifiez votre capacité de remboursement.
-                </p>
-            </article>
+        {% for user in users %}
+            <article class="faq_text">
+                <article id="text_hide1" class="hidden">
+                    <p>Bienvenue {{ user.lastname }}</p>
+                </article>
+        {% endfor %}
 
-            <article id="text_hide2" class="hidden">
-                <h3>Pouvez-vous commander / recommander un produit ?</h3>
-                <p class="content">
-                    Non, nous ne commandons pas de produits qui ne sont pas déjà sur le site et nous ne recommandons jamais un produit ou une pointure épuisé afin de laisser place aux nouveautés. De plus, les figurines tsume, collectors etc. sortent en séries limitées.
-                    Une fois notre stock vendu, il n'est donc plus possible d'en recommander.
-                </p>
-                <h3>Pourrais-je faire une pré-commande sur une figurine tsume ou une figurine collector ?</h3>
-                <p class="content">Non, Tsume, distributeur de la marque Tsume, nous interdit les pré-commandes de leurs produits mais par contre, il est possible de faire une réservation en nous contactant directement via notre email : shonenstore_reservation@gmail.com
-                </p>
-                <h3>Quand recevrez-vous la nouvelle collection ?</h3>
-                <p class="content">Nous recevons tous les jours des nouveaux produits, il n'y a pas de date prédéfinie pour une nouvelle collection globale.
-                </p>
-                <h3>Est-ce que vous vendez des contrefaçons ?</h3>
-                <p class="content">Non, tous les produits que nous vendons sont garantis 100% authentiques et nous sont livrés par les filiales françaises et européennes des plus grandes marques.
-                </p>
-            </article>
-
-            <article id="text_hide3" class="hidden">
-                <h1>Register</h1>
-    
-    {# {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
-    
-    <div>
-        {{ form_label(form.email, 'Email : ') }}
-        {{ form_widget(form.email, { attr: { placeholder: 'Email...' } }) }}
-        {{ form_errors(form.email) }}
-    <div>
-        {{ form_label(form.password, 'Password : ') }}
-        {{ form_widget(form.password, { attr: { placeholder: 'Password...' } }) }}
-        {{ form_errors(form.password) }}
-    </div>
-    <div>
-        {{ form_label(form.lastname, 'Last Name : ') }}
-        {{ form_widget(form.lastname, { attr: { placeholder: 'Last Name...' } }) }}
-        {{ form_errors(form.lastname) }}
-    </div>
-    <div>
-        {{ form_label(form.firstname, 'First Name : ') }}
-        {{ form_widget(form.firstname, { attr: { placeholder: 'First Name...' } }) }}
-        {{ form_errors(form.firstname) }}
-    </div>
-    <div>
-        {{ form_label(form.birthday, 'Birthday : ') }}
-        {{ form_widget(form.birthday) }}
-        {{ form_errors(form.birthday) }}
-    </div>
-    <div>
-        {{ form_label(form.adresse, 'Address : ') }}
-        {{ form_widget(form.adresse, { attr: { placeholder: 'Address...' } }) }}
-        {{ form_errors(form.adresse) }}
-    </div>
-    <div>
-        {{ form_label(form.zipCode, 'Zip Code : ') }}
-        {{ form_widget(form.zipCode, { attr: { placeholder: 'Zip Code...' } }) }}
-        {{ form_errors(form.zipCode) }}
-    </div>
-    <div>
-        {{ form_label(form.city, 'City : ') }}
-        {{ form_widget(form.city, { attr: { placeholder: 'City...' } }) }}
-        {{ form_errors(form.city) }}
-    </div>
-    <div>
-        {{ form_label(form.country, 'Country : ') }}
-        {{ form_widget(form.country, { attr: { placeholder: 'Country...' } }) }}
-        {{ form_errors(form.country) }}
-    </div>
-    <div>
-        <button type="submit" class="btn btn-primary">Register</button>
-    </div>
-    
-    {{ form_end(form) }} #}
-            </article>
-
-            <article id="text_hide4" class="hidden">
-                <h3>Est-ce que je peux modifier la taille d'un article ? Est-ce que je peux ajouter un article à ma commande ?</h3>
-                <p class="content">Non, une fois votre commande validée, nous ne pouvons plus la modifier. Il sera cependant possible de l'annuler, si le colis n'est pas encore emballé, et de vous rembourser dans un délai de 14 jours maximum par le même moyen qui vous a servi au paiement.</p>
-                <h3>Moyens de paiement</h3>
-                <p class="content">PAIEMENT SÉCURISÉ DE VOTRE COMMANDE:
-                    Nous vous proposons 3 types de paiements sécurisés:
-                    - Le paiement par carte bancaire (3D Secure) : Votre paiement par carte de crédit est effectué sur l'interface de paiement de notre solution de paiement partenaire, PayPlug. Les informations confidentielles de votre carte de paiement seront chiffrées de manière à ne pas pouvoir être interceptées, et seul PayPlug y aura accès.
-                    Modes de paiement acceptés via PayPlug :
-                    Carte bancaire, Visa, MasterCard, Maestro
-                    American Express
-                    Bancontact
-                    - Par Paypal : Pas besoin d'indiquer vos numéros de CB, votre adresse mail ainsi que le mot de passe de votre compte PayPal suffiront pour finaliser votre paiement sur l'interface de PayPal. Il vous est ensuite possible de régler directement l'intégralité de votre commande, ou de régler vos achats en 4 fois sans frais, sous réserve d'éligibilité par PayPal.
-                    - Par Alma en 2x, 3x ou 4x : En sélectionnant Alma au moment du paiement de votre commande, vous pourrez choisir de régler votre commande en 2, 3 ou 4 fois avec votre carte bancaire. Les frais à régler, dépendant du nombre de paiements choisi, et seront mis à jour avant de valider la commande.
-                </p>
-                <h3>Avez-vous reçu mon retour ? Quand sera-t-il traité ?</h3>
-                <p class="content">Les retours sont réceptionnés dans notre entrepôt et notre équipe logistique ne nous informe de la réception d'un colis qu'après son inspection. Pour savoir si votre retour a bien été réceptionné, merci de consulter le suivi de votre colis. Les retours sont inspectés puis traités le mardi, mercredi, jeudi et vendredi en fin de journée. En période de forte affluence (rentrée, fêtes de fin d'année, soldes...), nous traitons en priorité les expéditions et il se peut que les retours ne soient traités que 2 fois par semaine (mercredi et vendredi en général). Les remboursements sont effectués dans les 14 jours qui suivent la réception d'un retour.</p>
-                <h3>Comment annuler ma commande avant qu'elle ne soit expédiée ?</h3>
-                <p class="content">Dans le cas où vous ne souhaiteriez pas conserver la commande que vous venez de passer merci de contacter au plus vite notre service client qui tentera d'intercepter votre colis auprès de notre entrepôt logistique.
-                    Dans le cas ou le colis serait déjà expédié par notre plateforme, il vous parviendra à l'adresse indiquée dans votre commande et il vous appartiendra de procéder au retour du produit en suivant la procédure de retour.
-                    En revanche si le colis n'est pas encore expédié, nous pourrons effectivement annuler votre commande.
-                    Dans ce dernier cas, vous serez remboursé dans un délai de 14 jours par le même moyen qui vous a servi au paiement.
-                    La procédure est exactement la même lorsque vous souhaitez ne conserver qu'une partie de votre commande. En effet nous ne pouvons plus modifier votre commande à partir du moment où elle a été transmise informatiquement à notre entrepôt et que son statut est passé sur "préparation en cours".
-                </p>
-                <h3>Je ne vois pas de remboursement sur mon relevé bancaire après avoir annulé ma commande</h3>
-                <p class="content">Si votre demande d'annulation de commande, et de remboursement a été validée par notre (super efficace !) service client moins de 24h après le passage de votre commande, vous ne verrez pas de remboursement apparaitre sur votre compte bancaire car vous n’avez même pas eu le temps d’être débité !
-                    Si votre demande d'annulation de commande et de remboursement est intervenue plus de 24h après après le passage de votre commande, vous serez remboursé dans un délai de 14 jours par le même moyen qui vous a servi au paiement.
-                </p>
-                <h3>Comment faire un retour ?</h3>
-                <p class="content"><a href="{{url('other.retours')}}"></a></p>
-            </article>
-
-            <article id="text_hide5" class="hidden">
-                <h3>Qu'est-ce que la garantie légale de conformité et quelle est sa durée de validité ?</h3>
-                <p class="content">Afin de garantir cette conformité, le vendeur professionnel est tenu, pendant une durée de 2 ans à compter de la remise des biens au particulier consommateur, à la garantie légale de conformité (articles L217-1 à L217-14 du Code de la consommation). Cette garantie s'applique aux défauts de conformité déjà présents à la date de livraison.
-                </p>
-                <h3>Comment faire valoir mes droits et faire une réclamation en cas de défaut ?</h3>
-                <p class="content">Si vous êtes dans le délai de garantie et que l’article pour lequel vous souhaitez faire une réclamation correspond à un des cas couverts par la garantie légale de conformité (voir les cas ci-dessus), vous pouvez contacter notre service client via ce formulaire en expliquant le problème rencontré et en accompagnant votre demande :
-                    de votre justificatif d'achat,
-                    de photos de l’article et de ses défauts justifiant de la réalité du défaut de conformité.
-                    Le service client validera ensuite votre demande avant de vous proposer la réparation du produit si cela est possible ou un avoir correspondant au montant payé à l’origine pour cet article afin que vous puissiez le remplacer.
-                </p>
-            </article> 
+        <article id="text_hide2" class="hidden">
+            <h2>Tableau de commandes</h2>
+            {% include "_inc/notice.html.twig" %}
+<div class="table-responsive custom-responsive-table">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for orderDetail in ordersDetails %}
+                <tr>
+                    <td>{{ orderDetail.article.title }}</td>
+                    <td>{{ orderDetail.price | format_currency('EUR', locale='fr') }}</td>
+                    <td>{{ orderDetail.qty }}</td>
+                    <td>
+                        <a href="{{ url('productShip.show', { slug: orderDetail.article.slug }) }}" class="btn btn-sm btn-primary">Voir</a>
+                        <a href="{{ url('admin.shipUser.remove', { id: orderDetail.id }) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            {% for order in orders %}
+                <tr>
+                    <td colspan="2">Tout vos produits : {{ order.totalQty }}</td>
+                    <td colspan="2">Prix total : {{ order.totalPrice | format_currency('EUR', locale='fr') }}</td>
+                </tr>
+            {% endfor %}
+        </tfoot>
+    </table>
+</div>
         </article>
-  
+
+        <article id="text_hide3" class="hidden">
+            <h2>Vos informations personnelles</h2>
+            {% form_theme form 'bootstrap_5_layout.html.twig' %}
+            {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
+            <div>
+                {{ form_label(form.email, 'Email : ') }}
+                {{ form_widget(form.email, { attr: { placeholder: 'Email...' } }) }}
+                {{ form_errors(form.email) }}
+            </div>
+            {% if form.password is defined %}
+            <div>
+                {{ form_label(form.password, 'Password : ') }}
+                {{ form_widget(form.password, { attr: { placeholder: 'Password...' } }) }}
+                {{ form_errors(form.password) }}
+            </div>
+            <div>
+            {% endif %}
+                {{ form_label(form.lastname, 'Last Name : ') }}
+                {{ form_widget(form.lastname, { attr: { placeholder: 'Last Name...' } }) }}
+                {{ form_errors(form.lastname) }}
+            </div>
+            <div>
+                {{ form_label(form.firstname, 'First Name : ') }}
+                {{ form_widget(form.firstname, { attr: { placeholder: 'First Name...' } }) }}
+                {{ form_errors(form.firstname) }}
+            </div>
+            <div>
+                {{ form_label(form.birthday, 'Birthday : ') }}
+                {{ form_widget(form.birthday) }}
+                {{ form_errors(form.birthday) }}
+            </div>
+            <div>
+                {{ form_label(form.adresse, 'Address : ') }}
+                {{ form_widget(form.adresse, { attr: { placeholder: 'Address...' } }) }}
+                {{ form_errors(form.adresse) }}
+            </div>
+            <div>
+                {{ form_label(form.zipCode, 'Zip Code : ') }}
+                {{ form_widget(form.zipCode, { attr: { placeholder: 'Zip Code...' } }) }}
+                {{ form_errors(form.zipCode) }}
+            </div>
+            <div>
+                {{ form_label(form.city, 'City : ') }}
+                {{ form_widget(form.city, { attr: { placeholder: 'City...' } }) }}
+                {{ form_errors(form.city) }}
+            </div>
+            <div>
+                {{ form_label(form.country, 'Country : ') }}
+                {{ form_widget(form.country, { attr: { placeholder: 'Country...' } }) }}
+                {{ form_errors(form.country) }}
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+            {{ form_end(form) }}
+        </article>
+
+        <article id="text_hide4" class="hidden"></article>
+
+        <article id="text_hide5" class="hidden">
+            <h3>Qu'est-ce que la garantie légale de conformité et quelle est sa durée de validité ?</h3>
+            <p class="content">
+                Afin de garantir cette conformité, le vendeur professionnel est tenu, pendant une durée de 2 ans à compter de la remise des biens au particulier consommateur, à la garantie légale de conformité (articles L217-1 à L217-14 du Code de la consommation). Cette garantie s'applique aux défauts de conformité déjà présents à la date de livraison.
+            </p>
+            <h3>Comment faire valoir mes droits et faire une réclamation en cas de défaut ?</h3>
+            <p class="content">
+                Si vous êtes dans le délai de garantie et que l’article pour lequel vous souhaitez faire une réclamation correspond à un des cas couverts par la garantie légale de conformité (voir les cas ci-dessus), vous pouvez contacter notre service client via ce formulaire en expliquant le problème rencontré et en accompagnant votre demande :
+                <ul>
+                    <li>de votre justificatif d'achat,</li>
+                    <li>de photos de l’article et de ses défauts justifiant de la réalité du défaut de conformité.</li>
+                </ul>
+                Le service client validera ensuite votre demande avant de vous proposer la réparation du produit si cela est possible ou un avoir correspondant au montant payé à l’origine pour cet article afin que vous puissiez le remplacer.
+            </p>
+        </article>
     </section>
-{# {% endfor %}  #}
 </main>
 
 {% endblock %}

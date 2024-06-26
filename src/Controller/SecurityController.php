@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
         $form_register->handleRequest($this->request);
 
         if ($form_register->isSubmitted() && $form_register->isValid()) {
-        
+            $model->setCreatedAt(new \DateTimeImmutable());
             $model->setPassword(
                 $this->userPasswordHasher->hashPassword(
                     $model,
@@ -79,7 +79,7 @@ class SecurityController extends AbstractController
 
         $this->addFlash('notice', $notice);
 
-        return $this->redirectToRoute('security.login');
+        return $this->redirectToRoute('admin.index');
 
         }
         return $this->render('security/register.html.twig',[

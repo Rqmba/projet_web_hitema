@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Article;
-use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
@@ -22,88 +21,92 @@ class ArticleRepository extends ServiceEntityRepository
     public function getDataAllArticles(): Query
     {
         return $this->createQueryBuilder('article')
-            ->select('article.title', 'article.picture', 'article.description','article.price' , 'category.name as categoryName')
-            ->leftJoin('article.category', 'category')
+            ->where('article.deletedAt IS NULL')
             ->orderBy('article.releaseDate', 'DESC')
-            ->setMaxResults(8)
             ->getQuery();
     }
 
     public function getDataFigurines():Query
     {
         return $this->createQueryBuilder('article')
-        ->select('article.title, article.picture, article.description, article.price, manga.name as mangaName')
-        ->leftJoin('article.manga', 'manga')
-        ->where('article.category = :category')
-        ->setParameter('category', 1)
-        ->setMaxResults(8)
+        ->join('article.category', 'category')
+        ->where('category.name = :categoryName')
+        ->andWhere('article.deletedAt IS NULL')
+        ->setParameter('categoryName', 'Figurine')
+        ->orderBy('article.releaseDate', 'DESC')
         ->getQuery();
     }
 
     public function getDataGoodies():Query
     {
         return $this->createQueryBuilder('article')
-        ->select('article.title, article.picture ,article.description, article.price')
-        ->where('article.category = :category')
-        ->setParameter('category', 2)
-        ->setMaxResults(8)
+        ->join('article.category', 'category')
+        ->where('category.name = :categoryName')
+        ->andWhere('article.deletedAt IS NULL')
+        ->setParameter('categoryName', 'Goodie')
         ->getQuery();
-
     }
 
-    public function getDataVetements():Query
+    public function getDataVetements(): Query
     {
         return $this->createQueryBuilder('article')
-        ->select('article.title, article.picture, article.description, article.price')
-        ->where('article.category = :category')
-        ->setParameter('category', 3)
-        ->setMaxResults(8)
-        ->getQuery();
-
+            ->join('article.category', 'category')
+            ->where('category.name = :categoryName')
+            ->andWhere('article.deletedAt IS NULL')
+            ->setParameter('categoryName', 'Vetements')
+            ->getQuery();
     }
 
     public function getDataArticleDB():Query
     {
         return $this->createQueryBuilder('article')
-        ->select('article.title, article.picture, article.description, article.price,  category.name as categoryName')
-        ->leftJoin('article.category', 'category')
-        ->where('article.manga = :manga')
-        ->setParameter('manga', 1)
-        ->setMaxResults(8)
+        ->join('article.manga', 'manga')
+        ->where('manga.name = :mangaName')
+        ->andWhere('article.deletedAt IS NULL')
+        ->setParameter('mangaName', 'Dragon Ball')
         ->getQuery();
     }
 
     public function getOneArticleByClick(string $title):Query
     {
         return $this->createQueryBuilder('article')
-        ->select('article.id, article.title, article.picture, article.description, article.price, article.statut, category.name as categoryName')
-        ->leftJoin('article.category', 'category')
         ->where('article.title = :title')
         ->setParameter('title', $title)
         ->getQuery();
     }
 
-    public function getOneMangaByclick(string $manga):Query
-    {
-        return $this->createQueryBuilder('article')
-        ->select('article')
-        ->leftJoin('article.manga', 'manga')
-        ->where('manga.name = :name')
-        ->setParameter('name', $manga)
-        ->getQuery();
-    }
+    // public function getOneArticleByClick(string $slug):Query
+    // {
+    //     return $this->createQueryBuilder('article')
+    //     ->where('article.slug = :slug')
+    //     ->setParameter('slug', $slug)
+    //     ->getQuery();
+    // }
+
+    // public function getOneMangaByclick(string $manga):Query
+    // {
+    //     return $this->createQueryBuilder('article')
+    //     ->select('article')
+    //     ->leftJoin('article.manga', 'manga')
+    //     ->where('manga.name = :name')
+    //     ->setParameter('name', $manga)
+    //     ->getQuery();
+    // }
 
     public function findArticleBySearch(string $query): array
     {
         return $this->createQueryBuilder('article')
-        // ->leftJoin('article.category', 'category')
-        // ->addSelect('category')
-        ->where('article.title LIKE :query')
-        ->orWhere('article.description LIKE :query')
-        ->setParameter('query', '%' . $query . '%')
-        ->getQuery()
-        ->getResult();
+            ->join('article.manga', 'manga')
+            ->join('article.category', 'category')
+            ->where('article.title LIKE :query OR article.description LIKE :query')
+            ->orWhere('manga.name LIKE :query')
+            ->orWhere('category.name LIKE :query')
+            ->andWhere('article.deletedAt IS NULL')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
     }
+    
 
     //    /**
     //     * @return Article[] Returns an array of Article objects

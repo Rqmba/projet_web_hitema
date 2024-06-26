@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\OrdersDetails;
 use App\Entity\User;
 use App\Form\RegisterType;
 use App\Repository\ArticleRepository;
@@ -14,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -29,28 +27,31 @@ class AdminController extends AbstractController
         private OrdersDetailsRepository $ordersDetailsRepository,
         private UserRepository $userRepository,
         private RequestStack $requestStack,
-        private EntityManagerInterface $entityManager,
-        private UserPasswordHasherInterface $userPasswordHasher,
+        private EntityManagerInterface $entityManager
     ) {
         $this->request = $requestStack->getCurrentRequest();
     }
 
-    #[IsGranted('ROLE_ADMIN')]
-    #[Route('/homepage', name:'admin.index', methods:['GET'])]
-    public function adminIndex(): Response
-    {
-        return $this->render('admin/homepage/index.html.twig', [
-            "articlesAllFigurines" => $this->articleRepository->getDataFigurines()->getResult(),
-            "articlesDB" => $this->articleRepository->getDataArticleDB()->getResult(),
-        ]);
-    }
-
     #[IsGranted('ROLE_USER')]
-    #[Route('/user', name:'admin.userAccount.form', methods:['GET'])]
-    public function userAccount(): Response
+    #[Route('/user', name:'admin.userAccount.form', methods:['GET', 'POST'])]
+    public function userAccount(Request $request): Response
     {
+        $user = $this->getUser();
+        $form = $this->createForm(RegisterType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->flush();
+            $this->addFlash('notice', 'Vos informations ont été mises à jour.');
+            return $this->redirectToRoute('admin.userAccount.form');
+        }
+
         return $this->render('admin/user/userAccount.html.twig', [
+            'form' => $form->createView(),
             'users' => $this->userRepository->findAll(),
+            'orders' => $this->ordersRepository->findAll(),
+            'ordersDetails' => $this->ordersDetailsRepository->findAll(),
+            'articles' => $this->articleRepository->findAll(),
         ]);
     }
 
@@ -66,40 +67,29 @@ class AdminController extends AbstractController
         ]);
     }
 
-
-    public function register(?int $id = null): Response
+    #[IsGranted('ROLE_USER')]
+    #[Route('/user/form', name: 'admin.user.form')]
+    #[Route('/user/form/update/{id}', name: 'admin.user.form.update')]
+    public function form(?int $id = null): Response
     {
         $type = RegisterType::class;
         $model = $id ? $this->userRepository->find($id) : new User();
-        $form_register = $this->createForm($type, $model);
-        $form_register->handleRequest($this->request);
 
-        if ($form_register->isSubmitted() && $form_register->isValid()) {
-            $model->setPassword(
-                $this->userPasswordHasher->hashPassword(
-                    $model,
-                    $form_register->get('password')->getData()
-                )
-            );
+        $form = $this->createForm($type, $model);
+        $form->handleRequest($this->request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
             $id ? null : $this->entityManager->persist($model);
             $this->entityManager->flush();
 
-            $notice = $id ? 'Account Updated' : 'Account created';
+            $notice = $id ? 'User Updated' : 'User added';
             $this->addFlash('notice', $notice);
 
-            return $this->redirectToRoute('security.login');
+            return $this->redirectToRoute('admin.userAccount.form');
         }
 
-        return $this->render('security/register.html.twig', [
-            'form' => $form_register,
+        return $this->render('admin/user/userAccount.html.twig', [
+            'form' => $form,
         ]);
     }
-
-    // #[IsGranted('ROLE_USER')]
-    // #[Route('/user/ship/{id}', name: 'admin.shipUser.remove')]
-    // public function removeArticle(int $id): Response
-    // {
-    //     $order = $this->articleRepository->find($id);
-    // }
 }

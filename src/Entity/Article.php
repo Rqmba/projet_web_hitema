@@ -60,6 +60,9 @@ class Article
     #[ORM\OneToMany(targetEntity: OrdersDetails::class, mappedBy: 'article')]
     private Collection $ordersDetails;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $deletedAt = null;
+
     public function __construct()
     {
         $this->ordersDetails = new ArrayCollection();
@@ -228,5 +231,17 @@ class Article
            $this->slug = $slugger->slug($this->title)->lower();
        }
    }
+
+    public function getDeletedAt(): ?\DateTimeInterface
+    {
+        return $this->deletedAt;
+    }
+
+    public function setDeletedAt(?\DateTimeInterface $deletedAt): static
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
 }
 
